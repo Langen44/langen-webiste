@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Langen Motorcycles — Exceptional British Motorcycles, Hand-Built in Wigan</title>
+<meta name="description" content="Langen Motorcycles builds exceptional British motorcycles in Wigan, England. The Lightspeed — 185hp, 185kg, 185 units. The Two Stroke — 76hp, 112kg, hand-built in an edition of 100.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --black:#080807;--bg:#0c0b0a;--bg2:#111010;--bg3:#191715;
+  --gold:#c9a962;--gold2:#e2c47a;
+  --gold-dim:rgba(201,169,98,.12);--gold-glow:rgba(201,169,98,.22);
+  --w:#f5f4f2;--w90:rgba(245,244,242,.9);--w75:rgba(245,244,242,.75);
+  --w55:rgba(245,244,242,.55);--w30:rgba(245,244,242,.3);--w12:rgba(245,244,242,.12);
+  --b:rgba(201,169,98,.15);--b2:rgba(201,169,98,.32);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--w);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:16px}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 56px;height:72px;
+  background:rgba(8,8,7,.82);backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--b);transition:background .4s
+}
+.nav-logo img{height:30px;width:auto;opacity:.95}
+.nav-links{display:flex;align-items:center;gap:40px}
+.nav-links a{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--w55);text-decoration:none;transition:color .2s;font-weight:400}
+.nav-links a:hover{color:var(--gold)}
+.nav-links a.active{color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:24px}
+.nav-cta{background:transparent;border:1px solid var(--b2);color:var(--gold);padding:10px 26px;border-radius:2px;font-size:10px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:all .25s;font-family:'DM Sans',sans-serif;text-decoration:none;white-space:nowrap}
+.nav-cta:hover{background:var(--gold);color:var(--black);border-color:var(--gold)}
+
+/* ── HERO ── */
+.hero{position:relative;height:100vh;min-height:700px;overflow:hidden;display:flex;align-items:center}
+.hero-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% center;filter:brightness(.72) contrast(1.1)}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(to right,rgba(8,8,7,.88) 0%,rgba(8,8,7,.5) 50%,rgba(8,8,7,.15) 100%),
+    linear-gradient(to top,rgba(8,8,7,.6) 0%,transparent 40%)
+}
+.hero-content{position:relative;z-index:2;padding:0 80px;max-width:760px}
+.hero-eyebrow{font-size:10px;letter-spacing:6px;text-transform:uppercase;color:var(--gold);font-weight:400;margin-bottom:24px;display:flex;align-items:center;gap:16px}
+.hero-eyebrow::before{content:'';width:32px;height:1px;background:var(--gold);opacity:.7}
+.hero-headline{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:clamp(52px,6.5vw,96px);font-weight:300;
+  line-height:.95;letter-spacing:-2px;margin-bottom:32px;color:var(--w)
+}
+.hero-headline em{font-style:italic;color:var(--gold);display:block}
+.hero-body{font-size:18px;color:var(--w75);font-weight:300;line-height:1.75;max-width:480px;margin-bottom:52px}
+.hero-actions{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.btn-p{background:var(--gold);color:var(--black);padding:17px 44px;border-radius:2px;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:500;text-decoration:none;transition:all .3s;display:inline-block;font-family:'DM Sans',sans-serif}
+.btn-p:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 12px 36px rgba(201,169,98,.28)}
+.btn-g{background:transparent;color:var(--w90);padding:17px 36px;border-radius:2px;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;font-weight:400;text-decoration:none;border:1px solid var(--w30);transition:all .25s;display:inline-block;font-family:'DM Sans',sans-serif}
+.btn-g:hover{border-color:var(--w55);color:var(--w)}
+
+/* Scroll indicator */
+.hero-scroll-hint{position:absolute;bottom:44px;left:80px;z-index:2;display:flex;align-items:center;gap:12px;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--w30)}
+.scroll-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:.4}50%{opacity:1}}
+
+/* Bike counter — top right of hero */
+.hero-counter{position:absolute;top:50%;right:64px;transform:translateY(-50%);z-index:2;text-align:right}
+.hero-counter-val{font-family:'Cormorant Garamond',Georgia,serif;font-size:120px;font-weight:300;color:var(--w);opacity:.06;line-height:1;letter-spacing:-4px}
+.hero-counter-lbl{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--w30);margin-top:-8px}
+
+/* ── PHILOSOPHY STRIP ── */
+.philosophy{
+  background:var(--bg2);border-top:1px solid var(--b);border-bottom:1px solid var(--b);
+  padding:56px 80px;
+  display:flex;align-items:center;justify-content:space-between;gap:48px;
+}
+.philosophy-quote{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:clamp(22px,2.5vw,32px);font-weight:300;font-style:italic;
+  color:var(--w);line-height:1.35;flex:1
+}
+.philosophy-quote strong{font-style:normal;color:var(--gold);font-weight:400}
+.philosophy-divider{width:1px;height:80px;background:var(--b2);flex-shrink:0}
+.philosophy-attrs{display:flex;flex-direction:column;gap:20px;flex-shrink:0}
+.phil-attr{display:flex;flex-direction:column;gap:4px}
+.phil-attr-val{font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;color:var(--gold);font-weight:300;line-height:1}
+.phil-attr-lbl{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--w55)}
+
+/* ── MODELS ── */
+.models-section{padding:0}
+.models-label{padding:80px 80px 0;font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:16px;margin-bottom:48px}
+.models-label::before{content:'';width:24px;height:1px;background:var(--gold)}
+
+/* MODEL CARD: LIGHTSPEED */
+.model-lightspeed{
+  display:grid;grid-template-columns:1fr 1fr;min-height:640px;
+  border-top:1px solid var(--b)
+}
+.model-img{position:relative;overflow:hidden}
+.model-img img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform 8s cubic-bezier(.16,1,.3,1)}
+.model-img:hover img{transform:scale(1.04)}
+.model-img-overlay{position:absolute;inset:0;background:linear-gradient(to right,transparent 60%,rgba(8,8,7,.4))}
+.model-content{
+  background:var(--bg2);padding:72px 80px;
+  display:flex;flex-direction:column;justify-content:center;
+  border-left:1px solid var(--b)
+}
+.model-name-img{height:18px;width:auto;margin-bottom:32px;opacity:.9}
+.model-tagline{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:clamp(36px,3.5vw,52px);font-weight:300;
+  line-height:1.05;letter-spacing:-1px;margin-bottom:24px;color:var(--w)
+}
+.model-tagline em{font-style:italic;color:var(--gold)}
+.model-desc{font-size:17px;color:var(--w75);line-height:1.8;font-weight:300;margin-bottom:40px}
+.model-stats{display:flex;gap:32px;margin-bottom:44px;padding-bottom:40px;border-bottom:1px solid var(--b)}
+.mstat{display:flex;flex-direction:column;gap:6px}
+.mstat-val{font-family:'Cormorant Garamond',Georgia,serif;font-size:32px;color:var(--gold);font-weight:300;line-height:1}
+.mstat-unit{font-size:13px;color:var(--w55);vertical-align:super;margin-left:2px}
+.mstat-lbl{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--w55)}
+.model-actions{display:flex;gap:16px;flex-wrap:wrap}
+
+/* MODEL CARD: TWO STROKE — reversed layout */
+.model-twostroke{
+  display:grid;grid-template-columns:1fr 1fr;min-height:600px;
+  border-top:1px solid var(--b)
+}
+.model-twostroke .model-content{
+  background:var(--bg);border-left:none;border-right:1px solid var(--b);
+  order:-1
+}
+
+/* ── LS12 TEASER ── */
+.ls12-section{
+  position:relative;min-height:520px;
+  display:flex;align-items:center;
+  border-top:1px solid var(--b);overflow:hidden;
+  background:var(--black)
+}
+.ls12-bg{position:absolute;inset:0;opacity:.12;background:radial-gradient(ellipse 60% 80% at 70% 50%,rgba(201,169,98,.4),transparent)}
+.ls12-mark{
+  position:absolute;right:-40px;top:50%;transform:translateY(-50%);
+  height:90%;width:auto;opacity:.06;
+  filter:invert(1)
+}
+.ls12-content{position:relative;z-index:2;padding:80px 80px;max-width:680px}
+.ls12-label{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:flex;align-items:center;gap:16px}
+.ls12-label::before{content:'';width:24px;height:1px;background:var(--gold)}
+.ls12-heading{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:clamp(44px,5vw,72px);font-weight:300;
+  line-height:.98;letter-spacing:-2px;margin-bottom:28px;color:var(--w)
+}
+.ls12-heading em{font-style:italic;color:var(--gold)}
+.ls12-body{font-size:18px;color:var(--w75);line-height:1.8;font-weight:300;max-width:520px;margin-bottom:44px}
+.ls12-specs{display:flex;gap:40px;margin-bottom:44px;padding:28px 0;border-top:1px solid var(--b);border-bottom:1px solid var(--b)}
+.ls12-spec-val{font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;color:var(--gold);font-weight:300;line-height:1;margin-bottom:6px}
+.ls12-spec-lbl{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--w55)}
+.btn-outline{background:transparent;border:1px solid var(--b2);color:var(--gold);padding:15px 36px;border-radius:2px;font-size:10px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:all .25s;font-family:'DM Sans',sans-serif;text-decoration:none;display:inline-block}
+.btn-outline:hover{background:var(--gold);color:var(--black);border-color:var(--gold)}
+
+/* ── PROCESS ── */
+.process-section{padding:120px 80px;background:var(--bg2);border-top:1px solid var(--b);border-bottom:1px solid var(--b)}
+.process-header{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:72px}
+.process-heading{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(44px,4.5vw,64px);font-weight:300;line-height:1.05;letter-spacing:-1px;color:var(--w)}
+.process-heading em{font-style:italic;color:var(--gold)}
+.process-intro{font-size:17px;color:var(--w75);line-height:1.8;font-weight:300}
+.process-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--b);border:1px solid var(--b);border-radius:3px;overflow:hidden}
+.process-step{background:var(--bg);padding:36px 28px;position:relative;transition:background .3s}
+.process-step:hover{background:var(--bg3)}
+.process-step::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity .4s}
+.process-step:hover::before{opacity:1}
+.step-num{font-family:'Cormorant Garamond',Georgia,serif;font-size:52px;font-weight:300;color:var(--w12);line-height:1;margin-bottom:20px}
+.step-title{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--w90);font-weight:500;margin-bottom:12px}
+.step-desc{font-size:14px;color:var(--w55);line-height:1.7;font-weight:300}
+
+/* ── WHY LANGEN (ETHOS) ── */
+.ethos-section{padding:120px 80px}
+.ethos-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--b);border:1px solid var(--b);border-radius:3px;overflow:hidden;margin-top:64px}
+.ethos-item{background:var(--bg2);padding:52px 48px;transition:background .3s}
+.ethos-item:hover{background:var(--bg3)}
+.ethos-icon{width:48px;height:48px;border:1px solid var(--b2);border-radius:3px;display:flex;align-items:center;justify-content:center;margin-bottom:28px;background:var(--gold-dim)}
+.ethos-icon svg{width:22px;height:22px;stroke:var(--gold);fill:none;stroke-width:1.5}
+.ethos-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;font-weight:300;color:var(--w);margin-bottom:14px;letter-spacing:-.5px}
+.ethos-body{font-size:16px;color:var(--w55);line-height:1.8;font-weight:300}
+
+/* ── NEWS ── */
+.news-section{padding:120px 80px;background:var(--bg2);border-top:1px solid var(--b)}
+.news-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:56px}
+.news-heading{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(40px,4vw,58px);font-weight:300;letter-spacing:-1px;color:var(--w)}
+.news-heading em{font-style:italic;color:var(--gold)}
+.news-link{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);text-decoration:none;transition:opacity .2s;flex-shrink:0}
+.news-link:hover{opacity:.7}
+.news-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:1px;background:var(--b);border:1px solid var(--b);border-radius:3px;overflow:hidden}
+.news-card{background:var(--bg);text-decoration:none;display:flex;flex-direction:column;transition:background .3s}
+.news-card:hover{background:var(--bg3)}
+.news-img{aspect-ratio:16/10;overflow:hidden;position:relative}
+.news-img img{width:100%;height:100%;object-fit:cover;transition:transform 6s cubic-bezier(.16,1,.3,1)}
+.news-card:hover .news-img img{transform:scale(1.04)}
+.news-body{padding:32px;flex:1;display:flex;flex-direction:column}
+.news-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.news-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-weight:300;color:var(--w90);line-height:1.3;margin-bottom:12px;flex:1}
+.news-card:not(.news-featured) .news-title{font-size:18px}
+.news-date{font-size:11px;color:var(--w55);letter-spacing:1px;margin-top:auto;padding-top:16px;border-top:1px solid var(--b)}
+.news-arrow{color:var(--gold);opacity:.4;font-size:14px;margin-left:auto;transition:opacity .2s,transform .2s}
+.news-card:hover .news-arrow{opacity:.9;transform:translate(3px,-2px)}
+.news-footer-row{display:flex;align-items:center;justify-content:space-between}
+
+/* ── VISIT / CONTACT ── */
+.contact-section{
+  display:grid;grid-template-columns:1fr 1fr;
+  border-top:1px solid var(--b)
+}
+.contact-map{position:relative;min-height:480px;overflow:hidden;background:var(--bg3)}
+.contact-map img{width:100%;height:100%;object-fit:cover;opacity:.6;filter:grayscale(80%) contrast(1.2)}
+.contact-map-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(8,8,7,.5),transparent)}
+.contact-map-pin{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:16px;height:16px;border-radius:50%;
+  background:var(--gold);box-shadow:0 0 0 6px rgba(201,169,98,.25),0 0 0 12px rgba(201,169,98,.1)
+}
+.contact-content{padding:80px;background:var(--bg2);display:flex;flex-direction:column;justify-content:center}
+.contact-details{margin-top:48px;display:flex;flex-direction:column;gap:28px}
+.contact-item{display:flex;gap:20px;align-items:flex-start}
+.contact-item-icon{width:40px;height:40px;border:1px solid var(--b2);border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--gold-dim)}
+.contact-item-icon svg{width:18px;height:18px;stroke:var(--gold);fill:none;stroke-width:1.5}
+.contact-item-lbl{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--w55);margin-bottom:6px}
+.contact-item-val{font-size:16px;color:var(--w90);text-decoration:none;transition:color .2s;font-weight:300}
+.contact-item-val:hover{color:var(--gold)}
+.contact-cta-block{margin-top:48px;padding-top:40px;border-top:1px solid var(--b)}
+.contact-cta-block p{font-size:15px;color:var(--w55);line-height:1.75;margin-bottom:24px}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--black);border-top:1px solid var(--b);
+  padding:64px 80px 40px
+}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:64px;margin-bottom:64px}
+.footer-brand p{font-size:14px;color:var(--w55);line-height:1.75;margin-top:20px;max-width:280px}
+.footer-col-title{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--b)}
+.footer-links{display:flex;flex-direction:column;gap:12px}
+.footer-links a{font-size:14px;color:var(--w55);text-decoration:none;transition:color .2s;font-weight:300}
+.footer-links a:hover{color:var(--gold)}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:32px;border-top:1px solid var(--b);flex-wrap:wrap;gap:16px}
+.footer-copy{font-size:11px;color:var(--w30);letter-spacing:.5px}
+.footer-legal{display:flex;gap:24px}
+.footer-legal a{font-size:11px;color:var(--w30);text-decoration:none;letter-spacing:1px;transition:color .2s}
+.footer-legal a:hover{color:var(--gold)}
+.footer-logo{height:28px;opacity:.7;margin-bottom:20px}
+
+/* ── REVEAL ── */
+.rev{opacity:0;transform:translateY(24px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1)}
+.rev.in{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  nav,.hero-content,.philosophy,.models-label,.model-content,.ls12-content,.process-section,.ethos-section,.news-section,.contact-content,footer{padding-left:36px;padding-right:36px}
+  .nav-links{gap:24px}
+  .footer-top{grid-template-columns:1fr 1fr;gap:40px}
+}
+@media(max-width:860px){
+  .nav-links{display:none}
+  .model-lightspeed,.model-twostroke{grid-template-columns:1fr}
+  .model-twostroke .model-content{order:0}
+  .model-img{height:360px}
+  .process-steps{grid-template-columns:1fr 1fr}
+  .ethos-grid{grid-template-columns:1fr}
+  .news-grid{grid-template-columns:1fr}
+  .contact-section{grid-template-columns:1fr}
+  .contact-map{min-height:300px}
+  .philosophy{flex-direction:column;gap:32px;padding:48px 36px}
+  .philosophy-divider{display:none}
+  .philosophy-attrs{flex-direction:row;gap:32px}
+  .process-header{grid-template-columns:1fr}
+  .news-header{flex-direction:column;align-items:flex-start;gap:16px}
+  .footer-top{grid-template-columns:1fr;gap:32px}
+  .hero-counter{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img src="Langen-Motorcycles-Logo-White.png" alt="Langen Motorcycles">
+  </div>
+  <div class="nav-links">
+    <a href="lightspeed.html">Lightspeed</a>
+    <a href="#">Two Stroke</a>
+    <a href="#">About</a>
+    <a href="#">News</a>
+    <a href="#">Owners</a>
+    <a href="#">Contact</a>
+  </div>
+  <div class="nav-right">
+    <a href="lightspeed.html#reserve" class="nav-cta">Reserve yours</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <img class="hero-bg-img"
+    src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/691326617b56547773e30dfd_LangenLightspeed-015%201_warm.avif"
+    alt="Langen Lightspeed">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow rev">Wigan, England · Est. 2018</div>
+    <h1 class="hero-headline rev d1">
+      We do things<br>
+      <em>differently here</em>
+    </h1>
+    <p class="hero-body rev d2">Langen builds exceptional British motorcycles. Not to a brief, not to a budget, not to a committee. To a conviction — that engineering and emotion are not in conflict.</p>
+    <div class="hero-actions rev d3">
+      <a href="lightspeed.html" class="btn-p">Discover the Lightspeed</a>
+      <a href="#models" class="btn-g">Our motorcycles</a>
+    </div>
+  </div>
+  <div class="hero-counter">
+    <div class="hero-counter-val">285</div>
+    <div class="hero-counter-lbl">Total motorcycles</div>
+  </div>
+  <div class="hero-scroll-hint">
+    <div class="scroll-dot"></div>
+    Scroll to explore
+  </div>
+</section>
+
+<!-- PHILOSOPHY STRIP -->
+<div class="philosophy">
+  <div class="philosophy-quote rev">
+    <strong>"We do things differently here."</strong><br>
+    Every component questioned. Every gram accounted for. Every rider considered.
+  </div>
+  <div class="philosophy-divider"></div>
+  <div class="philosophy-attrs">
+    <div class="phil-attr rev">
+      <div class="phil-attr-val">285</div>
+      <div class="phil-attr-lbl">Total motorcycles</div>
+    </div>
+    <div class="phil-attr rev d1">
+      <div class="phil-attr-val">2018</div>
+      <div class="phil-attr-lbl">Founded</div>
+    </div>
+    <div class="phil-attr rev d2">
+      <div class="phil-attr-val">100%</div>
+      <div class="phil-attr-lbl">Hand-built, UK</div>
+    </div>
+  </div>
+</div>
+
+<!-- MODELS -->
+<div id="models">
+  <div class="models-label rev">Our motorcycles</div>
+
+  <!-- LIGHTSPEED -->
+  <div class="model-lightspeed">
+    <div class="model-img">
+      <img src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/691359e42d5943ef0aed816d_lightspeed-homepage-2025.avif" alt="Langen Lightspeed">
+      <div class="model-img-overlay"></div>
+    </div>
+    <div class="model-content">
+      <img class="model-name-img rev" src="Lightspeed-white.png" alt="Lightspeed">
+      <div class="model-tagline rev d1">
+        185 horsepower.<br>185 kilograms.<br><em>185 motorcycles.</em>
+      </div>
+      <p class="model-desc rev d2">A 1,190cc Rotax V-twin built in partnership with Buell. A full in-house electronics suite. A hand-welded steel trellis frame wrapped in carbon fibre. A Smiths dashboard designed for this bike alone.</p>
+      <div class="model-stats rev">
+        <div class="mstat"><div class="mstat-val">185<span class="mstat-unit">hp</span></div><div class="mstat-lbl">Power</div></div>
+        <div class="mstat"><div class="mstat-val">185<span class="mstat-unit">kg</span></div><div class="mstat-lbl">Weight</div></div>
+        <div class="mstat"><div class="mstat-val">£37k</div><div class="mstat-lbl">From + VAT</div></div>
+        <div class="mstat"><div class="mstat-val">185</div><div class="mstat-lbl">Units</div></div>
+      </div>
+      <div class="model-actions rev">
+        <a href="lightspeed.html" class="btn-p">Discover the Lightspeed</a>
+        <a href="lightspeed.html#configure" class="btn-g">Configure yours</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- TWO STROKE -->
+  <div class="model-twostroke">
+    <div class="model-content">
+      <div style="display:flex;align-items:center;gap:0;margin-bottom:32px" class="rev">
+        <img src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/6571a5e1b491bc9f941adcce_2strokeWhite.svg" alt="Two Stroke" style="height:40px;width:auto;opacity:.9">
+      </div>
+      <div class="model-tagline rev d1">
+        249.5cc.<br>76 horsepower.<br><em>Only 100 made.</em>
+      </div>
+      <p class="model-desc rev d2">The motorcycle that started it all. A 90° V-twin two-stroke developed with Vins Motors of Maranello. 76 horsepower. 112 kilograms. An extraordinary power-to-weight ratio, and a riding experience that reminds you why motorcycles exist.</p>
+      <div class="model-stats rev">
+        <div class="mstat"><div class="mstat-val">76<span class="mstat-unit">hp</span></div><div class="mstat-lbl">Power</div></div>
+        <div class="mstat"><div class="mstat-val">112<span class="mstat-unit">kg</span></div><div class="mstat-lbl">Weight</div></div>
+        <div class="mstat"><div class="mstat-val">£29.4k</div><div class="mstat-lbl">From + VAT</div></div>
+        <div class="mstat"><div class="mstat-val">100</div><div class="mstat-lbl">Units</div></div>
+      </div>
+      <div class="model-actions rev">
+        <a href="#" class="btn-p">Discover the Two Stroke</a>
+        <a href="#" class="btn-g">Enquire</a>
+      </div>
+    </div>
+    <div class="model-img">
+      <img src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/658407ff8fe7ad63d26ba66f_twostroke-homepage.jpg" alt="Langen Two Stroke">
+    </div>
+  </div>
+</div>
+
+<!-- LS12 TURBO TEASER -->
+<div class="ls12-section">
+  <div class="ls12-bg"></div>
+  <img class="ls12-mark" src="LS12-reversed.png" alt="">
+  <div class="ls12-content">
+    <div class="ls12-label rev">Coming next</div>
+    <h2 class="ls12-heading rev d1">
+      LS12<br><em>Lightspeed Turbo</em>
+    </h2>
+    <p class="ls12-body rev d2">A turbocharged Rotax V-twin. Between 250 and 300 horsepower. Targeting the fastest production motorcycle in the world. In development now — details to follow.</p>
+    <div class="ls12-specs rev">
+      <div>
+        <div class="ls12-spec-val">250–300<span style="font-size:14px;color:var(--w55);margin-left:4px">hp</span></div>
+        <div class="ls12-spec-lbl">Target power</div>
+      </div>
+      <div>
+        <div class="ls12-spec-val">Turbocharged</div>
+        <div class="ls12-spec-lbl">Induction</div>
+      </div>
+      <div>
+        <div class="ls12-spec-val">In development</div>
+        <div class="ls12-spec-lbl">Status</div>
+      </div>
+    </div>
+    <a href="#" class="btn-outline rev">Register your interest</a>
+  </div>
+</div>
+
+<!-- THE LANGEN PROCESS -->
+<div class="process-section">
+  <div class="process-header">
+    <div>
+      <div style="font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:16px" class="rev"><span style="width:24px;height:1px;background:var(--gold);display:inline-block"></span>How we work</div>
+      <h2 class="process-heading rev d1">The Langen<br><em>process</em></h2>
+    </div>
+    <p class="process-intro rev d2">Every Langen is built to individual order. There is no production line, no showroom floor, no compromise. There is a process — and it begins the moment you make contact.</p>
+  </div>
+  <div class="process-steps">
+    <div class="process-step rev">
+      <div class="step-num">01</div>
+      <div class="step-title">First contact</div>
+      <div class="step-desc">You reach out. We listen. A conversation with Christofer and the team — not a sales pitch, but a genuine discussion about what you want from your motorcycle.</div>
+    </div>
+    <div class="process-step rev d1">
+      <div class="step-num">02</div>
+      <div class="step-title">Visit Wigan</div>
+      <div class="step-desc">Come to the factory. See the bikes being built. Meet the team. Sit on the frame. Understand what makes a Langen different before committing to one.</div>
+    </div>
+    <div class="process-step rev d2">
+      <div class="step-num">03</div>
+      <div class="step-title">Specification</div>
+      <div class="step-desc">Your motorcycle is specified in full — colour, finish, suspension setup, ergonomics. Every decision made together. Nothing left to chance.</div>
+    </div>
+    <div class="process-step rev d3">
+      <div class="step-num">04</div>
+      <div class="step-title">The build</div>
+      <div class="step-desc">Your motorcycle is built by hand in Wigan. We'll keep you informed throughout. When it's ready, you'll know — because we'll have tested it ourselves first.</div>
+    </div>
+    <div class="process-step rev d4">
+      <div class="step-num">05</div>
+      <div class="step-title">Delivery</div>
+      <div class="step-desc">Personal delivery. A handover briefing. A direct line to the people who built it. The relationship doesn't end at delivery — it starts there.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ETHOS / WHY LANGEN -->
+<div class="ethos-section">
+  <div style="font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:16px" class="rev">
+    <span style="width:24px;height:1px;background:var(--gold);display:inline-block"></span>Why Langen
+  </div>
+  <h2 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(44px,4.5vw,64px);font-weight:300;line-height:1.05;letter-spacing:-1px;color:var(--w)" class="rev d1">
+    The principles we<br><em>build by</em>
+  </h2>
+  <div class="ethos-grid">
+    <div class="ethos-item rev">
+      <div class="ethos-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="ethos-title">Obsessive engineering</div>
+      <div class="ethos-body">We question every component. Every gram of weight, every material choice, every fastener. Not because the spec sheet demands it — because the rider deserves it.</div>
+    </div>
+    <div class="ethos-item rev d1">
+      <div class="ethos-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      <div class="ethos-title">Genuinely handbuilt</div>
+      <div class="ethos-body">Langen motorcycles are built one at a time, by hand, in Wigan. The highest UK-local manufacturing content of any motorcycle produced in Britain today.</div>
+    </div>
+    <div class="ethos-item rev">
+      <div class="ethos-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+      <div class="ethos-title">Built for the individual</div>
+      <div class="ethos-body">No two Langens are alike. Every motorcycle is specified, built and delivered for a specific person. Your geometry. Your finish. Your ride.</div>
+    </div>
+    <div class="ethos-item rev d1">
+      <div class="ethos-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+      <div class="ethos-title">Made in Britain</div>
+      <div class="ethos-body">Built at Kingfisher Court, Wigan, by a team with backgrounds at CCM, Triumph, BAC Mono, McLaren and M-Sport. British engineering at its most focused.</div>
+    </div>
+  </div>
+</div>
+
+<!-- NEWS -->
+<div class="news-section">
+  <div class="news-header">
+    <div>
+      <div style="font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:16px" class="rev"><span style="width:24px;height:1px;background:var(--gold);display:inline-block"></span>Latest</div>
+      <h2 class="news-heading rev d1">News &amp;<br><em>updates</em></h2>
+    </div>
+    <a href="#" class="news-link rev">View all news →</a>
+  </div>
+  <div class="news-grid">
+    <a href="https://www.langenmotorcycles.co.uk/news/lightspeed-draws-strong-interest-at-motorcycle-live" target="_blank" rel="noopener" class="news-card news-featured rev">
+      <div class="news-img">
+        <img src="https://cdn.prod.website-files.com/62165527b2e2d5ce581cc8ae/69319e0e0e87ef982f14ddb5_Langen%20Lightspeed%20Launch.jpg" alt="Lightspeed at Motorcycle Live">
+      </div>
+      <div class="news-body">
+        <div class="news-tag">Lightspeed</div>
+        <div class="news-title">Lightspeed draws strong interest at Motorcycle Live</div>
+        <div class="news-footer-row">
+          <div class="news-date">December 2025</div>
+          <div class="news-arrow">↗</div>
+        </div>
+      </div>
+    </a>
+    <a href="#" class="news-card rev d1">
+      <div class="news-img" style="aspect-ratio:4/3">
+        <img src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/658407ff8fe7ad63d26ba66f_twostroke-homepage.jpg" alt="Two Stroke">
+      </div>
+      <div class="news-body">
+        <div class="news-tag">Two Stroke</div>
+        <div class="news-title">Two Stroke — final build slots now available</div>
+        <div class="news-footer-row">
+          <div class="news-date">2025</div>
+          <div class="news-arrow">↗</div>
+        </div>
+      </div>
+    </a>
+    <a href="#" class="news-card rev d2">
+      <div class="news-img" style="aspect-ratio:4/3">
+        <img src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/691359e42d5943ef0aed816d_lightspeed-homepage-2025.avif" alt="LS12">
+      </div>
+      <div class="news-body">
+        <div class="news-tag">LS12 Turbo</div>
+        <div class="news-title">LS12 development update — targeting 250hp</div>
+        <div class="news-footer-row">
+          <div class="news-date">2025</div>
+          <div class="news-arrow">↗</div>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- CONTACT / VISIT -->
+<div class="contact-section">
+  <div class="contact-map">
+    <img src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/658450ae4067358ec7fddf0c_DSC05092-Enhanced-NR2.jpg" alt="Langen factory">
+    <div class="contact-map-overlay"></div>
+    <div class="contact-map-pin"></div>
+  </div>
+  <div class="contact-content">
+    <div style="font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:16px" class="rev"><span style="width:24px;height:1px;background:var(--gold);display:inline-block"></span>Visit us</div>
+    <h2 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(38px,4vw,56px);font-weight:300;line-height:1.05;letter-spacing:-1px;margin-top:20px;color:var(--w)" class="rev d1">
+      Come to<br><em>Wigan</em>
+    </h2>
+    <div class="contact-details">
+      <div class="contact-item rev">
+        <div class="contact-item-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div>
+          <div class="contact-item-lbl">Address</div>
+          <span class="contact-item-val">Kingfisher Court, Wigan, Greater Manchester WN4 9DW</span>
+        </div>
+      </div>
+      <div class="contact-item rev d1">
+        <div class="contact-item-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.85-.86a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.44 16.94z"/></svg></div>
+        <div>
+          <div class="contact-item-lbl">Phone</div>
+          <a href="tel:+4401942724059" class="contact-item-val">+44 01942 724 059</a>
+        </div>
+      </div>
+      <div class="contact-item rev d2">
+        <div class="contact-item-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <div>
+          <div class="contact-item-lbl">Email</div>
+          <a href="/cdn-cgi/l/email-protection#ea83848c85aa868b848d8f8487859e8598899389868f99c48985c49f81" class="contact-item-val"><span class="__cf_email__" data-cfemail="127b7c747d527e737c75777c7f7d667d60716b717e77613c717d3c6779">[email&#160;protected]</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="contact-cta-block rev">
+      <p>Visits are by appointment. We encourage every prospective owner to come and see the motorcycles being built — it changes the conversation entirely.</p>
+      <a href="/cdn-cgi/l/email-protection#ec85828a83ac808d828b8982818398839e8f958f80899fc28f83c29987d39f998e86898f98d1aa8d8f98839e95c9dedcba859f8598c9dedca9829d99859e95" class="btn-p">Arrange a visit</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img class="footer-logo" src="Langen-Motorcycles-Logo-White.png" alt="Langen Motorcycles">
+      <p>Exceptional British motorcycles, hand-built in Wigan, England. Passion, performance and innovation — on two wheels.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Motorcycles</div>
+      <div class="footer-links">
+        <a href="lightspeed.html">Lightspeed</a>
+        <a href="#">Two Stroke</a>
+        <a href="#">LS12 Turbo</a>
+        <a href="#">Certified Pre-Owned</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <div class="footer-links">
+        <a href="#">About Langen</a>
+        <a href="#">The process</a>
+        <a href="#">News</a>
+        <a href="#">Careers</a>
+        <a href="#">Owners portal</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <div class="footer-links">
+        <a href="/cdn-cgi/l/email-protection#2a43444c456a464b444d4f4447455e4558495349464f59044945045f41"><span class="__cf_email__" data-cfemail="cda4a3aba28da1aca3aaa8a3a0a2b9a2bfaeb4aea1a8bee3aea2e3b8a6">[email&#160;protected]</span></a>
+        <a href="tel:+4401942724059">+44 01942 724 059</a>
+        <a href="#">Kingfisher Court, Wigan</a>
+        <a href="#">Press portal</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Langen Technology Ltd &nbsp;·&nbsp; Registered in England &amp; Wales 11601010</span>
+    <div class="footer-legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Cookie Policy</a>
+      <a href="#">Terms</a>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Scroll reveal
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}});
+},{threshold:0.08,rootMargin:'0px 0px -24px 0px'});
+document.query
