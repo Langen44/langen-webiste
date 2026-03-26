@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certified Pre-Owned — Langen Motorcycles</title>
+<meta name="description" content="Langen Certified Pre-Owned. Factory inspected, factory warranted, re-specifiable. Who better to buy a pre-owned Langen from than the people who built it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --black:#080807;--bg:#0c0b0a;--bg2:#111010;--bg3:#191715;
+  --gold:#c9a962;--gold2:#e2c47a;--gold-dim:rgba(201,169,98,.12);
+  --w:#f5f4f2;--w90:rgba(245,244,242,.9);--w75:rgba(245,244,242,.75);
+  --w55:rgba(245,244,242,.55);--w30:rgba(245,244,242,.3);--w12:rgba(245,244,242,.12);
+  --b:rgba(201,169,98,.15);--b2:rgba(201,169,98,.32);
+  --green:rgba(76,175,80,1);--green-dim:rgba(76,175,80,.1);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--w);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.6}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 56px;height:72px;background:rgba(8,8,7,.82);backdrop-filter:blur(24px);border-bottom:1px solid var(--b);transition:background .4s}
+.nav-logo a{display:flex}.nav-logo img{height:28px;opacity:.95}
+.nav-links{display:flex;align-items:center;gap:40px}
+.nav-links a{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--w55);text-decoration:none;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--gold)}
+.nav-cta{border:1px solid var(--b2);color:var(--gold);padding:10px 26px;border-radius:2px;font-size:10px;letter-spacing:3px;text-transform:uppercase;text-decoration:none;transition:all .25s;font-family:'DM Sans',sans-serif}
+.nav-cta:hover{background:var(--gold);color:var(--black);border-color:var(--gold)}
+
+/* HERO */
+.hero{position:relative;height:68vh;min-height:520px;display:flex;align-items:flex-end;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,8,7,.25),rgba(8,8,7,.75) 100%),linear-gradient(to right,rgba(8,8,7,.65),transparent 65%);z-index:1}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;filter:brightness(.75) contrast(1.1)}
+.hero-content{position:relative;z-index:2;padding:0 80px 80px}
+.hero-eyebrow{font-size:10px;letter-spacing:6px;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:flex;align-items:center;gap:14px}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold)}
+.hero-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(52px,6vw,86px);font-weight:300;line-height:.95;letter-spacing:-2px;color:var(--w);margin-bottom:24px}
+.hero-title em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:18px;color:var(--w75);font-weight:300;line-height:1.75;max-width:520px}
+
+/* TRUST BAR */
+.trust-bar{background:var(--bg2);border-top:1px solid var(--b);border-bottom:1px solid var(--b);display:grid;grid-template-columns:repeat(4,1fr)}
+.trust-item{padding:36px 40px;border-right:1px solid var(--b);display:flex;align-items:center;gap:16px;transition:background .25s}
+.trust-item:last-child{border-right:none}
+.trust-item:hover{background:var(--bg3)}
+.trust-icon{width:40px;height:40px;border:1px solid var(--b2);border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--gold-dim)}
+.trust-icon svg{width:18px;height:18px;stroke:var(--gold);fill:none;stroke-width:1.5}
+.trust-val{font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;color:var(--gold);font-weight:300;line-height:1;margin-bottom:4px}
+.trust-lbl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--w55)}
+
+/* CURRENT LISTING — FEATURED */
+.listing-section{padding:100px 80px}
+.sec-lbl{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:14px}
+.sec-lbl::before{content:'';width:24px;height:1px;background:var(--gold)}
+.sec-h{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(40px,4vw,58px);font-weight:300;line-height:1.05;letter-spacing:-1px;color:var(--w);margin-bottom:12px}
+.sec-h em{font-style:italic;color:var(--gold)}
+
+/* FEATURED BIKE */
+.featured-bike{border:1px solid var(--b);border-radius:3px;overflow:hidden;margin-top:48px}
+.featured-top{display:grid;grid-template-columns:1.2fr 1fr}
+.featured-img{position:relative;overflow:hidden;min-height:480px}
+.featured-img img{width:100%;height:100%;object-fit:cover;transition:transform 8s cubic-bezier(.16,1,.3,1)}
+.featured-bike:hover .featured-img img{transform:scale(1.04)}
+.available-badge{position:absolute;top:24px;left:24px;background:var(--green);color:#fff;font-size:9px;letter-spacing:3px;text-transform:uppercase;padding:7px 14px;border-radius:2px;font-weight:500}
+.sold-badge{position:absolute;top:24px;left:24px;background:rgba(245,244,242,.15);color:var(--w55);font-size:9px;letter-spacing:3px;text-transform:uppercase;padding:7px 14px;border-radius:2px;border:1px solid var(--w30)}
+.featured-content{background:var(--bg2);padding:56px 52px;display:flex;flex-direction:column;justify-content:space-between}
+.featured-model-logo{height:13px;width:auto;opacity:.85;margin-bottom:20px}
+.featured-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:40px;font-weight:300;color:var(--w);line-height:1;margin-bottom:8px}
+.featured-subtitle{font-size:13px;color:var(--w55);margin-bottom:28px;letter-spacing:.3px}
+.featured-desc{font-size:15px;color:var(--w75);line-height:1.8;font-weight:300;margin-bottom:28px}
+
+/* UPGRADES LIST */
+.upgrades-list{margin-bottom:28px}
+.upgrades-title{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.upgrade-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(245,244,242,.05);font-size:14px;color:var(--w75)}
+.upgrade-item:last-child{border-bottom:none}
+.upgrade-dot{width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0}
+
+/* SPEC GRID */
+.spec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--b);border:1px solid var(--b);border-radius:2px;overflow:hidden;margin-bottom:28px}
+.spec-item{background:var(--bg);padding:14px 16px}
+.spec-val{font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;color:var(--gold);font-weight:300;line-height:1;margin-bottom:4px}
+.spec-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--w55)}
+.price-row{display:flex;align-items:center;justify-content:space-between;padding:20px 0 0;border-top:1px solid var(--b);flex-wrap:wrap;gap:12px}
+.price-val{font-family:'Cormorant Garamond',Georgia,serif;font-size:36px;color:var(--gold);font-weight:300;line-height:1}
+.price-sub{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--w55);margin-top:4px}
+.btn-primary{background:var(--gold);color:var(--black);padding:14px 36px;border-radius:2px;font-size:10px;letter-spacing:3px;text-transform:uppercase;font-weight:500;text-decoration:none;display:inline-block;transition:all .3s;font-family:'DM Sans',sans-serif;border:none;cursor:pointer}
+.btn-primary:hover{background:var(--gold2);transform:translateY(-1px);box-shadow:0 8px 24px rgba(201,169,98,.28)}
+
+/* SOCIAL PROOF STRIP */
+.proof-strip{background:var(--black);border-top:1px solid var(--b);border-bottom:1px solid var(--b);padding:40px 80px;display:flex;align-items:center;gap:32px}
+.proof-icon{font-size:32px;opacity:.5;flex-shrink:0}
+.proof-text{font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-weight:300;font-style:italic;color:var(--w);line-height:1.4}
+.proof-text strong{font-style:normal;color:var(--gold);font-weight:400}
+
+/* PAST LISTINGS */
+.past-section{padding:80px 80px 100px;background:var(--bg2);border-top:1px solid var(--b)}
+.past-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--b);border:1px solid var(--b);border-radius:3px;overflow:hidden;margin-top:48px}
+.past-card{background:var(--bg);padding:28px}
+.past-img{aspect-ratio:16/9;overflow:hidden;border-radius:2px;margin-bottom:20px}
+.past-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.7);transition:filter .3s}
+.past-card:hover .past-img img{filter:brightness(.85)}
+.past-model{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.past-name{font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;font-weight:300;color:var(--w55);margin-bottom:4px}
+.past-status{font-size:11px;color:var(--w30);letter-spacing:1px}
+
+/* 5 CPO BENEFITS */
+.benefits-section{padding:100px 80px;border-top:1px solid var(--b)}
+.benefits-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--b);border:1px solid var(--b);border-radius:3px;overflow:hidden;margin-top:56px}
+.benefit-item{background:var(--bg2);padding:52px 48px;position:relative;transition:background .3s}
+.benefit-item:hover{background:var(--bg3)}
+.benefit-item::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity .4s}
+.benefit-item:hover::before{opacity:1}
+.benefit-num{font-family:'Cormorant Garamond',Georgia,serif;font-size:56px;font-weight:300;color:var(--w12);line-height:1;margin-bottom:20px}
+.benefit-title{font-size:13px;letter-spacing:2.5px;text-transform:uppercase;color:var(--w90);font-weight:500;margin-bottom:14px}
+.benefit-text{font-size:15px;color:var(--w55);line-height:1.8;font-weight:300}
+.benefit-checklist{margin-top:16px;display:flex;flex-direction:column;gap:8px}
+.check-row{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--w55)}
+.check-dot{width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:7px}
+
+/* WIDE BENEFIT - respec */
+.benefit-item.wide{grid-column:span 2;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.respec-visual{display:flex;flex-direction:column;gap:12px}
+.respec-option{display:flex;align-items:center;gap:16px;padding:16px 20px;border:1px solid var(--b);border-radius:3px;background:var(--bg);transition:all .25s;cursor:default}
+.respec-option:hover{border-color:var(--b2);background:var(--bg3)}
+.respec-swatch{width:32px;height:32px;border-radius:50%;border:1px solid var(--b2);flex-shrink:0}
+.respec-label{font-size:13px;color:var(--w75)}
+.respec-sub{font-size:11px;color:var(--w55);margin-top:2px}
+
+/* SELL SECTION */
+.sell-section{padding:100px 80px;background:var(--bg2);border-top:1px solid var(--b);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.sell-form{background:var(--bg);border:1px solid var(--b);border-radius:3px;padding:48px}
+.form-title{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--b)}
+.form-group{margin-bottom:18px}
+.form-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--w55);display:block;margin-bottom:8px}
+.form-input{width:100%;background:var(--bg2);border:1px solid var(--b);color:var(--w90);padding:13px 16px;border-radius:2px;font-size:14px;font-family:'DM Sans',sans-serif;transition:border-color .2s;outline:none}
+.form-input:focus{border-color:var(--gold)}
+.form-input::placeholder{color:var(--w30)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+textarea.form-input{min-height:90px;resize:vertical;line-height:1.6}
+select.form-input option{background:var(--bg3)}
+.form-submit{width:100%;background:var(--gold);color:var(--black);border:none;padding:16px;border-radius:2px;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:500;cursor:pointer;transition:all .3s;font-family:'DM Sans',sans-serif;margin-top:4px}
+.form-submit:hover{background:var(--gold2);transform:translateY(-1px);box-shadow:0 8px 24px rgba(201,169,98,.25)}
+.form-note{font-size:12px;color:var(--w55);text-align:center;margin-top:14px;line-height:1.6}
+
+/* ALERT SIGNUP */
+.alert-section{padding:60px 80px;background:var(--black);border-top:1px solid var(--b);display:flex;align-items:center;justify-content:space-between;gap:48px;flex-wrap:wrap}
+.alert-text h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:300;color:var(--w);margin-bottom:8px}
+.alert-text p{font-size:15px;color:var(--w55);max-width:480px}
+.alert-form{display:flex;gap:12px;flex-wrap:wrap}
+.alert-input{background:var(--bg2);border:1px solid var(--b);color:var(--w90);padding:13px 20px;border-radius:2px;font-size:14px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .2s;min-width:260px}
+.alert-input:focus{border-color:var(--gold)}
+.alert-input::placeholder{color:var(--w30)}
+.alert-btn{background:var(--gold);color:var(--black);border:none;padding:13px 28px;border-radius:2px;font-size:10px;letter-spacing:3px;text-transform:uppercase;font-weight:500;cursor:pointer;transition:all .25s;font-family:'DM Sans',sans-serif;white-space:nowrap}
+.alert-btn:hover{background:var(--gold2)}
+
+/* FOOTER */
+footer{background:var(--bg);border-top:1px solid var(--b);padding:48px 80px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+footer img.foot-logo{height:24px;opacity:.8}
+.foot-copy{font-size:11px;color:var(--w55)}
+.foot-links{display:flex;gap:28px}
+.foot-links a{font-size:11px;color:var(--w55);text-decoration:none;letter-spacing:1.5px;text-transform:uppercase;transition:color .2s}
+.foot-links a:hover{color:var(--gold)}
+
+/* REVEAL */
+.rev{opacity:0;transform:translateY(22px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1)}
+.rev.in{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+@media(max-width:1024px){nav,.hero-content,.listing-section,.benefits-section,.sell-section,.past-section,.alert-section,footer{padding-left:32px;padding-right:32px}.nav-links{display:none}}
+@media(max-width:860px){.trust-bar{grid-template-columns:repeat(2,1fr)}.trust-item{border-bottom:1px solid var(--b)}.featured-top{grid-template-columns:1fr}.featured-img{min-height:300px}.benefits-grid{grid-template-columns:1fr}.benefit-item.wide{grid-column:span 1;grid-template-columns:1fr}.sell-section{grid-template-columns:1fr;gap:48px}.past-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><a href="index.html"><img src="Langen-Motorcycles-Logo-White.png" alt="Langen Motorcycles"></a></div>
+  <div class="nav-links">
+    <a href="lightspeed.html">Lightspeed</a>
+    <a href="#">Two Stroke</a>
+    <a href="cpo.html" class="active">Pre-Owned</a>
+    <a href="owners.html">Owner Bikes</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </div>
+  <a href="lightspeed.html#reserve" class="nav-cta">Reserve yours</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <img class="hero-img" src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/658407ff8fe7ad63d26ba66f_twostroke-homepage.jpg" alt="Langen Certified Pre-Owned">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow rev">Langen Certified Pre-Owned</div>
+    <h1 class="hero-title rev d1">Who better<br>to buy from than the<br><em>people who built it.</em></h1>
+    <p class="hero-sub rev d2">Every pre-owned Langen is returned to Wigan, inspected by the original build team, and certified before it finds its next owner. The history, the provenance, the relationship — included as standard.</p>
+  </div>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item rev">
+    <div class="trust-icon"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+    <div><div class="trust-val">40+</div><div class="trust-lbl">Point inspection</div></div>
+  </div>
+  <div class="trust-item rev d1">
+    <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+    <div><div class="trust-val">12 months</div><div class="trust-lbl">Factory warranty</div></div>
+  </div>
+  <div class="trust-item rev d2">
+    <div class="trust-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+    <div><div class="trust-val">24 hrs</div><div class="trust-lbl">Previous sale turnaround</div></div>
+  </div>
+  <div class="trust-item rev d3">
+    <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+    <div><div class="trust-val">Re-spec</div><div class="trust-lbl">Option available</div></div>
+  </div>
+</div>
+
+<!-- CURRENT LISTING -->
+<div class="listing-section">
+  <div class="sec-lbl rev">Available now</div>
+  <h2 class="sec-h rev d1">Current<br><em>stock</em></h2>
+
+  <!-- FEATURED BIKE — Two Stroke #33 style listing -->
+  <div class="featured-bike rev">
+    <div class="featured-top">
+      <div class="featured-img">
+        <img src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/658407ff8fe7ad63d26ba66f_twostroke-homepage.jpg" alt="Two Stroke CPO">
+        <div class="available-badge">Available now</div>
+      </div>
+      <div class="featured-content">
+        <div>
+          <img class="featured-model-logo" src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/6571a5e1b491bc9f941adcce_2strokeWhite.svg" alt="Two Stroke">
+          <div class="featured-title">Two Stroke #018</div>
+          <div class="featured-subtitle">2022 · Midnight Black · 1,240 miles · Build #018 of 100</div>
+          <p class="featured-desc">A rare opportunity. Two Stroke #018 has remained true to the original Langen colour scheme with carefully chosen enhancements. Returned to the factory, fully inspected, and ready for its next owner.</p>
+
+          <div class="upgrades-list">
+            <div class="upgrades-title">Specification upgrades</div>
+            <div class="upgrade-item"><div class="upgrade-dot"></div>Gold anodised chassis end mounts</div>
+            <div class="upgrade-item"><div class="upgrade-dot"></div>Full CNC machined front wheel kit</div>
+            <div class="upgrade-item"><div class="upgrade-dot"></div>Carbon fibre rear hugger</div>
+            <div class="upgrade-item"><div class="upgrade-dot"></div>Carbon fibre heel guard</div>
+            <div class="upgrade-item"><div class="upgrade-dot"></div>Öhlins steering damper</div>
+            <div class="upgrade-item"><div class="upgrade-dot"></div>Tracker system (transferrable)</div>
+            <div class="upgrade-item"><div class="upgrade-dot"></div>Carbon fibre lightweight number plate</div>
+          </div>
+
+          <div class="spec-grid">
+            <div class="spec-item"><div class="spec-val">1,240</div><div class="spec-lbl">Miles</div></div>
+            <div class="spec-item"><div class="spec-val">76hp</div><div class="spec-lbl">Power</div></div>
+            <div class="spec-item"><div class="spec-val">112kg</div><div class="spec-lbl">Weight</div></div>
+            <div class="spec-item"><div class="spec-val">2022</div><div class="spec-lbl">Year</div></div>
+            <div class="spec-item"><div class="spec-val">12 mo</div><div class="spec-lbl">Warranty</div></div>
+            <div class="spec-item"><div class="spec-val">CPO</div><div class="spec-lbl">Certified</div></div>
+          </div>
+        </div>
+
+        <div class="price-row">
+          <div>
+            <div class="price-val">£24,500</div>
+            <div class="price-sub">+ VAT · CPO certified · Re-specification available</div>
+          </div>
+          <a href="/cdn-cgi/l/email-protection#5f363139301f333e31383a3132302b302d3c263c333a2c713c30712a34602c2a3d353a3c2b621c0f107f1a312e2a362d267fbddfcb7f0b28307f0c2b2d30343a7f7a6d6c6f6e67" class="btn-primary">Enquire now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLACEHOLDER for next listing -->
+  <div style="margin-top:1px;background:var(--bg2);border:1px solid var(--b);border-radius:3px;padding:56px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px" class="rev">
+    <div style="opacity:.2;font-family:'Cormorant Garamond',Georgia,serif;font-size:48px;font-weight:300">◈</div>
+    <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;font-weight:300;color:var(--w55)">New stock added regularly</div>
+    <div style="font-size:15px;color:var(--w55);max-width:440px;line-height:1.7">Pre-owned Langens are rare. Register below to be the first to know when new stock arrives — previous listings have sold within 24 hours.</div>
+    <a href="#alerts" style="margin-top:8px;background:transparent;border:1px solid var(--b2);color:var(--gold);padding:12px 28px;border-radius:2px;font-size:10px;letter-spacing:3px;text-transform:uppercase;text-decoration:none;font-family:'DM Sans',sans-serif;transition:all .25s" onmouseover="this.style.background='var(--gold)';this.style.color='#000'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Register for alerts</a>
+  </div>
+</div>
+
+<!-- SOCIAL PROOF -->
+<div class="proof-strip rev">
+  <div class="proof-icon">◎</div>
+  <div class="proof-text">The previous listing through our Certified Pre-Owned programme found a new owner <strong>within 24 hours.</strong> Pre-owned Langens are rare — and those that come to market don't stay long.</div>
+</div>
+
+<!-- PAST LISTINGS -->
+<div class="past-section">
+  <div class="sec-lbl rev">Previously sold</div>
+  <h2 class="sec-h rev d1">Past<br><em>listings</em></h2>
+  <div class="past-grid">
+    <div class="past-card rev">
+      <div class="past-img"><img src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/658407ff8fe7ad63d26ba66f_twostroke-homepage.jpg" alt="Two Stroke #033"></div>
+      <div class="past-model">Two Stroke</div>
+      <div class="past-name">#033 — Sold within 24 hours</div>
+      <div class="past-status">2023 · 890 miles · CPO certified</div>
+    </div>
+    <div class="past-card rev d1" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:48px;background:var(--bg3)">
+      <div style="opacity:.15;font-size:32px;margin-bottom:16px">+</div>
+      <div style="font-size:14px;color:var(--w55)">More listings coming as more<br>owners join the programme</div>
+    </div>
+    <div class="past-card rev d2" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:48px;background:var(--bg3)">
+      <div style="opacity:.15;font-size:32px;margin-bottom:16px">+</div>
+      <div style="font-size:14px;color:var(--w55)">Selling your Langen?<br><a href="#sell" style="color:var(--gold);text-decoration:none">Let us know →</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- 5 CPO BENEFITS -->
+<div class="benefits-section">
+  <div class="sec-lbl rev">Why CPO</div>
+  <h2 class="sec-h rev d1">The Langen CPO<br><em>programme</em></h2>
+  <div class="benefits-grid">
+
+    <div class="benefit-item rev">
+      <div class="benefit-num">01</div>
+      <div class="benefit-title">Factory inspection</div>
+      <div class="benefit-text">Every CPO motorcycle undergoes a rigorous 40+ point inspection before handover. Completed by the factory technician who knows your specific motorcycle inside out.</div>
+      <div class="benefit-checklist">
+        <div class="check-row"><div class="check-dot"></div>Mechanical</div>
+        <div class="check-row"><div class="check-dot"></div>Electrical &amp; electronics</div>
+        <div class="check-row"><div class="check-dot"></div>Visual &amp; cosmetic</div>
+        <div class="check-row"><div class="check-dot"></div>Documentation &amp; history</div>
+        <div class="check-row"><div class="check-dot"></div>Accessories &amp; ancillaries</div>
+        <div class="check-row"><div class="check-dot"></div>Test ride &amp; final preparation</div>
+      </div>
+    </div>
+
+    <div class="benefit-item rev d1">
+      <div class="benefit-num">02</div>
+      <div class="benefit-title">Factory-backed warranty</div>
+      <div class="benefit-text">The warranty is provided directly by Langen Motorcycles — not a third party. Every CPO motorcycle comes with a minimum 12 months warranty. The same team, the same commitment, the same direct line to the people who built it.</div>
+    </div>
+
+    <div class="benefit-item rev">
+      <div class="benefit-num">03</div>
+      <div class="benefit-title">Certified vehicle history</div>
+      <div class="benefit-text">A detailed background on every motorcycle — previous ownership, service records, any modifications, race use, storage history. Our in-house database combined with external data suppliers provides the complete picture. No gaps, no surprises.</div>
+    </div>
+
+    <div class="benefit-item rev d1">
+      <div class="benefit-num">04</div>
+      <div class="benefit-title">Motorcycle provenance</div>
+      <div class="benefit-text">CPO Langens command a premium over non-certified pre-owned examples. We built each one by hand and know them intimately. A new Certificate of Ownership is issued from the factory with every CPO sale.</div>
+    </div>
+
+    <div class="benefit-item wide rev">
+      <div>
+        <div class="benefit-num">05</div>
+        <div class="benefit-title">Re-specification of the motorcycle</div>
+        <div class="benefit-text">This is where Langen differs entirely from any other pre-owned programme. When you buy a used motorcycle from us, we offer you the opportunity to work with our design team and customise it to your exact requirements — whether that's a change of colour, new wheels, revised ergonomics, or a full specification update. The motorcycle becomes yours in every sense before you take delivery.</div>
+        <p style="font-size:14px;color:var(--w55);margin-top:16px;line-height:1.7">No other manufacturer offers this. It's the reason pre-owned Langens are genuinely desirable rather than merely available.</p>
+      </div>
+      <div class="respec-visual">
+        <div class="respec-option">
+          <div class="respec-swatch" style="background:linear-gradient(135deg,#1a1a1a,#3a3a3a)"></div>
+          <div><div class="respec-label">Bodywork colour change</div><div class="respec-sub">Any finish · Gloss, satin or matt</div></div>
+        </div>
+        <div class="respec-option">
+          <div class="respec-swatch" style="background:linear-gradient(135deg,#c9a962,#8a6e35)"></div>
+          <div><div class="respec-label">Chassis &amp; swingarm finish</div><div class="respec-sub">Powder coat · Anodised · Custom</div></div>
+        </div>
+        <div class="respec-option">
+          <div class="respec-swatch" style="background:linear-gradient(135deg,#555,#888)"></div>
+          <div><div class="respec-label">Wheel specification</div><div class="respec-sub">Spoked or CNC machined</div></div>
+        </div>
+        <div class="respec-option">
+          <div class="respec-swatch" style="background:linear-gradient(135deg,#222,#444);display:flex;align-items:center;justify-content:center">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div><div class="respec-label">Ergonomics &amp; contact points</div><div class="respec-sub">Bars, pegs, seat — set for you</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SELL YOUR LANGEN -->
+<div class="sell-section" id="sell">
+  <div>
+    <div class="sec-lbl rev">Sell your Langen</div>
+    <h2 class="sec-h rev d1">Thinking of<br><em>selling?</em></h2>
+    <p style="font-size:17px;color:var(--w75);line-height:1.85;font-weight:300;margin-bottom:32px" class="rev d2">If you own a Langen and are considering selling, contact us first. We can either purchase the motorcycle directly, or list it through the CPO programme — ensuring it finds the right next owner and that your motorcycle's story continues properly.</p>
+    <div style="display:flex;flex-direction:column;gap:14px" class="rev d3">
+      <div style="display:flex;gap:16px;align-items:flex-start;padding:20px;background:var(--bg2);border:1px solid var(--b);border-radius:3px">
+        <div style="width:1px;height:40px;background:var(--gold);opacity:.4;flex-shrink:0;margin-top:2px"></div>
+        <div><div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--w75);margin-bottom:6px">Direct purchase</div><div style="font-size:14px;color:var(--w55);line-height:1.65">We make a fair offer. Quick, straightforward — no agents, no auction fees.</div></div>
+      </div>
+      <div style="display:flex;gap:16px;align-items:flex-start;padding:20px;background:var(--bg2);border:1px solid var(--b);border-radius:3px">
+        <div style="width:1px;height:40px;background:var(--gold);opacity:.4;flex-shrink:0;margin-top:2px"></div>
+        <div><div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--w75);margin-bottom:6px">CPO listing</div><div style="font-size:14px;color:var(--w55);line-height:1.65">We certify and list your motorcycle on your behalf, reaching the right buyers through the Langen network.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="sell-form rev">
+    <div class="form-title">Submit your Langen</div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Name</label><input type="text" class="form-input" placeholder="Your name"></div>
+      <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" placeholder="your@email.com"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Model</label>
+        <select class="form-input"><option value="">Select</option><option>Lightspeed</option><option>Two Stroke</option></select>
+      </div>
+      <div class="form-group"><label class="form-label">Build number</label><input type="text" class="form-input" placeholder="#042"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Mileage</label><input type="text" class="form-input" placeholder="1,200 miles"></div>
+      <div class="form-group"><label class="form-label">Preference</label>
+        <select class="form-input"><option>Direct purchase</option><option>CPO listing</option><option>Either / discuss</option></select>
+      </div>
+    </div>
+    <div class="form-group"><label class="form-label">Notes</label><textarea class="form-input" placeholder="Spec, condition, any relevant details..."></textarea></div>
+    <button class="form-submit" onclick="submitForm()">Submit for evaluation</button>
+    <p class="form-note">We respond within 48 hours. All enquiries handled with discretion.</p>
+  </div>
+</div>
+
+<!-- STOCK ALERTS -->
+<div class="alert-section rev" id="alerts">
+  <div class="alert-text">
+    <h3>Get notified when new CPO stock arrives</h3>
+    <p>Pre-owned Langens are rare — and they move fast. Register your interest and be the first to hear when the next motorcycle becomes available.</p>
+  </div>
+  <div class="alert-form">
+    <input type="email" class="alert-input" placeholder="your@email.com" id="alert-email">
+    <button class="alert-btn" onclick="registerAlert()">Register for alerts</button>
+  </div>
+</div>
+
+<footer>
+  <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+    <img class="foot-logo" src="Langen-Motorcycles-Logo-White.png" alt="Langen Motorcycles">
+    <span class="foot-copy">© 2025 Langen Technology Ltd · Registered in England &amp; Wales 11601010</span>
+  </div>
+  <div class="foot-links">
+    <a href="index.html">Home</a>
+    <a href="lightspeed.html">Lightspeed</a>
+    <a href="#">Two Stroke</a>
+    <a href="#">Contact</a>
+    <a href="#">Privacy</a>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const obs = new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');obs.unobserve(x.target)}}),{threshold:.08,rootMargin:'0px 0px -24px 0px'});
+document.querySelectorAll('.rev').forEach(el=>obs.observe(el));
+const nav=document.querySelector('nav');
+window.addEventListener('scroll',()=>{nav.style.background=window.scrollY>80?'rgba(8,8,7,.97)':'rgba(8,8,7,.82)';},{passive:true});
+
+function submitForm() {
+  const inputs = document.querySelectorAll('.sell-form .form-input');
+  const name = inputs[0].value, email = inputs[1].value, model = inputs[2].value;
+  const build = inputs[3].value, miles = inputs[4].value, pref = inputs[5].value, notes = inputs[6].value;
+  if(!name||!email||!model){alert('Please fill in name, email and model.');return;}
+  const sub = encodeURIComponent(`CPO Submission — Langen ${model} ${build}`);
+  const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nModel: ${model}\nBuild: ${build}\nMileage: ${miles}\nPreference: ${pref}\n\nNotes:\n${notes}`);
+  window.location.href = `mailto:info@langenmotorcycles.co.uk?subject=${sub}&body=${body}`;
+}
+
+function registerAlert() {
+  const email = document.getElementById('alert-email').value;
+  if(!email){alert('Please enter your email address.');return;}
+  window.location.href = `mailto:info@langenm
