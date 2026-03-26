@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lightspeed — Langen Motorcycles</title>
+<meta name="description" content="185 horsepower. 185 kilograms. 185 motorcycles. The Langen Lightspeed is a hand-built British motorcycle unlike anything else on earth.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --black:#080807;--bg:#0c0b0a;--bg2:#111010;--bg3:#191715;
+  --gold:#c9a962;--gold2:#e2c47a;
+  --gold-dim:rgba(201,169,98,.12);--gold-glow:rgba(201,169,98,.22);
+  --w:#f5f4f2;--w90:rgba(245,244,242,.9);--w75:rgba(245,244,242,.75);
+  --w55:rgba(245,244,242,.55);--w20:rgba(245,244,242,.2);--w08:rgba(245,244,242,.08);
+  --b:rgba(201,169,98,.15);--b2:rgba(201,169,98,.32);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--w);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.6}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 52px;height:72px;background:rgba(8,8,7,.82);backdrop-filter:blur(24px);border-bottom:1px solid var(--b);transition:background .4s}
+.nav-logo{display:flex;align-items:center;gap:20px}
+.nav-logo img.main{height:28px;opacity:.95}
+.nav-div{width:1px;height:22px;background:var(--b2);flex-shrink:0}
+.nav-logo img.model{height:13px;opacity:.8}
+.nav-links{display:flex;align-items:center;gap:36px}
+.nav-links a{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--w55);text-decoration:none;transition:color .2s;font-weight:400}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{background:transparent;border:1px solid var(--b2);color:var(--gold);padding:10px 26px;border-radius:2px;font-size:10px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:all .25s;font-family:'DM Sans',sans-serif;text-decoration:none;white-space:nowrap}
+.nav-cta:hover{background:var(--gold);color:var(--black);border-color:var(--gold)}
+
+/* HERO */
+.hero{position:relative;height:100vh;min-height:700px;display:flex;align-items:flex-end;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,8,7,.4) 0%,rgba(8,8,7,0) 38%,rgba(8,8,7,0) 52%,rgba(8,8,7,.93) 100%),linear-gradient(to right,rgba(8,8,7,.58) 0%,transparent 65%);z-index:1}
+.hero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:brightness(.8) contrast(1.1)}
+.hero-content{position:relative;z-index:2;padding:0 84px 92px;width:100%}
+.hero-wordmark{display:block;height:clamp(36px,4.8vw,64px);width:auto;margin-bottom:28px}
+.hero-eyebrow{font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);font-weight:400;margin-bottom:18px;display:flex;align-items:center;gap:16px}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold);opacity:.7}
+.hero-sub{font-size:18px;font-weight:300;color:var(--w90);letter-spacing:.1px;line-height:1.78;max-width:500px;margin-bottom:48px}
+.hero-actions{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.hero-scroll{position:absolute;bottom:44px;right:84px;z-index:2;display:flex;align-items:center;gap:12px;font-size:10px;letter-spacing:3.5px;text-transform:uppercase;color:var(--w55)}
+.scroll-line{width:36px;height:1px;background:var(--w20)}
+
+/* BUTTONS */
+.btn-p{background:var(--gold);color:var(--black);padding:17px 44px;border-radius:2px;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:500;text-decoration:none;transition:all .3s;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;display:inline-block}
+.btn-p:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 12px 40px rgba(201,169,98,.28)}
+.btn-g{background:transparent;color:var(--w90);padding:17px 36px;border-radius:2px;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;font-weight:400;text-decoration:none;border:1px solid var(--w20);transition:all .25s;font-family:'DM Sans',sans-serif;display:inline-block}
+.btn-g:hover{border-color:var(--w55);color:var(--w)}
+
+/* NUMBERS */
+.numbers{background:var(--bg2);border-top:1px solid var(--b);border-bottom:1px solid var(--b);display:grid;grid-template-columns:repeat(4,1fr)}
+.n-item{padding:56px 48px;border-right:1px solid var(--b);transition:background .3s;position:relative}
+.n-item:last-child{border-right:none}
+.n-item:hover{background:var(--bg3)}
+.n-val{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(52px,5.5vw,76px);font-weight:300;color:var(--gold);line-height:1;letter-spacing:-1px;margin-bottom:14px}
+.n-unit{font-size:18px;color:var(--w55);font-weight:300;vertical-align:super;margin-left:3px}
+.n-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--w75);font-weight:400;margin-bottom:6px}
+.n-sub{font-size:13px;color:var(--w55);line-height:1.5}
+
+/* SECTION SHARED */
+.sec-lbl{font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;font-weight:400;display:flex;align-items:center;gap:16px}
+.sec-lbl::before{content:'';width:24px;height:1px;background:var(--gold)}
+.sec-h{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(44px,4.5vw,66px);font-weight:300;line-height:1.05;letter-spacing:-1px;margin-bottom:28px;color:var(--w)}
+.sec-h em{font-style:italic;color:var(--gold)}
+.sec-b{font-size:17px;line-height:1.85;color:var(--w75);font-weight:300;max-width:560px}
+
+/* ENGINE */
+.engine-sec{display:grid;grid-template-columns:1fr 1fr;gap:84px;align-items:center;padding:120px 84px}
+.engine-vis{aspect-ratio:4/3;background:var(--bg3);border-radius:3px;overflow:hidden;border:1px solid var(--b)}
+.engine-vis img{width:100%;height:100%;object-fit:cover}
+.e-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--b);border:1px solid var(--b);margin-top:48px;border-radius:3px;overflow:hidden}
+.e-stat{background:var(--bg2);padding:26px;transition:background .25s}
+.e-stat:hover{background:var(--bg3)}
+.e-stat-val{font-family:'Cormorant Garamond',Georgia,serif;font-size:36px;color:var(--gold);font-weight:300;line-height:1;margin-bottom:10px}
+.e-stat-lbl{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--w55)}
+
+/* ELECTRONICS */
+.elec-sec{background:var(--bg2);border-top:1px solid var(--b);border-bottom:1px solid var(--b);padding:120px 84px}
+.elec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--b);border:1px solid var(--b);border-radius:3px;overflow:hidden;margin-top:64px}
+.elec-item{background:var(--bg);padding:40px 36px;position:relative;transition:background .3s}
+.elec-item::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity .4s}
+.elec-item:hover{background:var(--bg3)}
+.elec-item:hover::before{opacity:1}
+.elec-n{font-family:'Cormorant Garamond',Georgia,serif;font-size:52px;font-weight:300;color:var(--w08);line-height:1;margin-bottom:18px}
+.elec-t{font-size:13px;letter-spacing:2.5px;text-transform:uppercase;color:var(--w90);font-weight:500;margin-bottom:14px}
+.elec-d{font-size:15px;color:var(--w55);line-height:1.75;font-weight:300}
+
+/* SPLIT */
+.split{display:grid;grid-template-columns:1fr 1fr;min-height:640px}
+.split-img{position:relative;overflow:hidden}
+.split-img img{width:100%;height:100%;object-fit:cover;transition:transform 8s cubic-bezier(.16,1,.3,1)}
+.split-img:hover img{transform:scale(1.04)}
+.split-txt{padding:88px 84px;background:var(--bg2);display:flex;flex-direction:column;justify-content:center;border-left:1px solid var(--b)}
+.susp-item{display:flex;gap:20px;align-items:flex-start;padding:22px 0;border-bottom:1px solid var(--b)}
+.susp-item:last-child{border-bottom:none}
+.susp-line{width:1px;min-height:40px;background:linear-gradient(to bottom,var(--gold),transparent);flex-shrink:0;margin-top:4px;opacity:.5}
+.susp-key{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--w75);margin-bottom:7px;font-weight:400}
+.susp-val{font-size:15px;color:var(--w55);line-height:1.65;font-weight:300}
+
+/* SPECS */
+.specs-sec{padding:120px 84px}
+.specs-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;margin-top:64px}
+.specs-grp{margin-bottom:48px}
+.specs-grp-t{font-size:10px;letter-spacing:4.5px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--b)}
+.spec-row{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0;border-bottom:1px solid rgba(245,244,242,.06);gap:20px}
+.spec-row:last-child{border-bottom:none}
+.spec-k{font-size:13px;color:var(--w55);font-weight:300;flex-shrink:0}
+.spec-v{font-size:14px;color:var(--w90);font-weight:400;text-align:right}
+.specs-note{grid-column:1/-1;background:var(--bg2);border:1px solid var(--b);border-radius:3px;padding:32px 36px;display:flex;gap:24px;align-items:flex-start}
+.specs-note p{font-size:15px;color:var(--w55);line-height:1.75}
+.specs-note strong{color:var(--w90)}
+
+/* CONFIGURE */
+.cfg-sec{background:var(--bg2);border-top:1px solid var(--b);padding:120px 84px;position:relative;overflow:hidden}
+.cfg-sec::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;border-radius:50%;background:radial-gradient(ellipse,rgba(201,169,98,.06),transparent 70%);pointer-events:none}
+.cfg-inner{display:grid;grid-template-columns:1fr 1fr;gap:84px;align-items:center}
+.cfg-opts{margin-top:48px;display:flex;flex-direction:column;gap:14px}
+.cfg-opt{display:flex;align-items:center;gap:20px;padding:22px 28px;border:1px solid var(--b);border-radius:3px;background:var(--bg);cursor:pointer;transition:all .25s;text-decoration:none;color:inherit}
+.cfg-opt:hover{border-color:var(--b2);background:var(--bg3)}
+.cfg-icon{width:44px;height:44px;border-radius:3px;background:var(--gold-dim);border:1px solid var(--b2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cfg-icon svg{width:20px;height:20px;stroke:var(--gold);fill:none;stroke-width:1.5}
+.cfg-lbl{font-size:14px;color:var(--w90);font-weight:400}
+.cfg-sub{font-size:12px;color:var(--w55);margin-top:3px}
+.cfg-arr{margin-left:auto;color:var(--gold);font-size:20px;opacity:.6;flex-shrink:0}
+.cfg-img{position:relative;aspect-ratio:4/3;border-radius:3px;overflow:hidden;border:1px solid var(--b)}
+.cfg-img img{width:100%;height:100%;object-fit:cover}
+.cfg-img-ov{position:absolute;inset:0;background:linear-gradient(135deg,rgba(8,8,7,.55),transparent 60%);display:flex;align-items:flex-end;padding:32px}
+.cfg-badge{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);background:rgba(8,8,7,.88);padding:10px 20px;border-radius:2px;border:1px solid var(--b2)}
+.cfg-cta p{font-size:15px;color:var(--w55);line-height:1.8;margin-bottom:28px;margin-top:40px}
+
+/* PRESS */
+.press-sec{padding:120px 84px}
+.press-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--b);border:1px solid var(--b);border-radius:3px;overflow:hidden;margin-top:40px}
+.press-card{background:var(--bg2);padding:52px 44px;transition:background .3s;text-decoration:none;display:flex;flex-direction:column}
+.press-card:hover{background:var(--bg3)}
+.press-q{font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-weight:300;font-style:italic;color:var(--w90);line-height:1.55;margin-bottom:32px;flex:1}
+.press-q::before{content:'\201C';font-size:72px;color:var(--gold);opacity:.22;display:block;line-height:.72;margin-bottom:10px}
+.press-src{font-size:10px;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);font-weight:400}
+.press-tag{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--w20);border:1px solid var(--w08);padding:4px 10px;border-radius:2px;display:inline-block;margin-top:8px}
+.press-arr{color:var(--gold);opacity:.35;font-size:16px;margin-left:auto;margin-top:16px;align-self:flex-end;transition:opacity .2s,transform .2s}
+.press-card:hover .press-arr{opacity:.85;transform:translate(3px,-2px)}
+
+/* DELIVERY */
+.del-sec{background:var(--bg2);border-top:1px solid var(--b);padding:88px 84px;display:grid;grid-template-columns:repeat(3,1fr)}
+.del-item{padding:48px 44px;border-right:1px solid var(--b)}
+.del-item:last-child{border-right:none}
+.del-icon{width:52px;height:52px;border-radius:3px;border:1px solid var(--b2);display:flex;align-items:center;justify-content:center;margin-bottom:28px;background:var(--gold-dim)}
+.del-icon svg{width:24px;height:24px;stroke:var(--gold);fill:none;stroke-width:1.5}
+.del-t{font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:500;margin-bottom:14px;color:var(--w90)}
+.del-d{font-size:15px;color:var(--w55);line-height:1.8;font-weight:300}
+
+/* RESERVE */
+.rsv-sec{position:relative;padding:160px 84px;overflow:hidden;text-align:center;background:var(--black)}
+.rsv-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 100%,rgba(201,169,98,.09),transparent),radial-gradient(ellipse 50% 40% at 50% 50%,rgba(201,169,98,.03),transparent)}
+.rsv-ls12{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);height:65%;width:auto;opacity:.04;pointer-events:none;filter:invert(1)}
+.rsv-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
+.rsv-lbl{font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:28px;font-weight:400}
+.rsv-h{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(42px,5.5vw,68px);font-weight:300;line-height:1.08;margin-bottom:28px;letter-spacing:-1px;color:var(--w)}
+.rsv-h em{font-style:italic;color:var(--gold)}
+.rsv-b{font-size:18px;color:var(--w75);line-height:1.85;margin-bottom:52px;font-weight:300}
+.rsv-acts{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap}
+.cbar{margin-top:72px;padding-top:40px;border-top:1px solid var(--b);display:flex;align-items:center;justify-content:center;gap:56px;flex-wrap:wrap}
+.cbar-item{display:flex;flex-direction:column;gap:6px;text-align:center}
+.cbar-lbl{font-size:10px;letter-spacing:3.5px;text-transform:uppercase;color:var(--w55)}
+.cbar-val{font-size:15px;color:var(--w75);text-decoration:none;transition:color .2s}
+.cbar-val:hover{color:var(--gold)}
+
+/* FOOTER */
+footer{background:var(--bg);border-top:1px solid var(--b);padding:52px 84px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px}
+.foot-logo{height:26px;opacity:.85}
+.foot-copy{font-size:11px;color:var(--w55);letter-spacing:.5px}
+.foot-links{display:flex;gap:32px;flex-wrap:wrap}
+.foot-links a{font-size:11px;color:var(--w55);text-decoration:none;letter-spacing:1.5px;text-transform:uppercase;transition:color .2s}
+.foot-links a:hover{color:var(--gold)}
+
+/* REVEAL */
+.rev{opacity:0;transform:translateY(28px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1)}
+.rev.in{opacity:1;transform:none}
+.d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  nav,.hero-content,.engine-sec,.elec-sec,.specs-sec,.cfg-sec,.press-sec,.del-sec,.rsv-sec,footer{padding-left:32px;padding-right:32px}
+  .split-txt{padding:56px 32px}
+  .nav-links{display:none}
+}
+@media(max-width:860px){
+  .numbers{grid-template-columns:repeat(2,1fr)}
+  .n-item{padding:40px 24px;border-bottom:1px solid var(--b)}
+  .engine-sec{grid-template-columns:1fr;gap:40px;padding-top:80px;padding-bottom:80px}
+  .elec-grid,.press-grid{grid-template-columns:1fr}
+  .split{grid-template-columns:1fr}
+  .split-img{height:360px}
+  .specs-grid{grid-template-columns:1fr;gap:0}
+  .cfg-inner{grid-template-columns:1fr;gap:48px}
+  .del-sec{grid-template-columns:1fr}
+  .del-item{border-right:none;border-bottom:1px solid var(--b);padding:36px 24px}
+  .del-item:last-child{border-bottom:none}
+  .hero-scroll{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img class="main" src="Langen-Motorcycles-Logo-White.png" alt="Langen Motorcycles">
+    <div class="nav-div"></div>
+    <img class="model" src="Lightspeed-white.png" alt="Lightspeed">
+  </div>
+  <div class="nav-links">
+    <a href="#performance">Performance</a>
+    <a href="#electronics">Electronics</a>
+    <a href="#specification">Specification</a>
+    <a href="#configure">Configure</a>
+    <a href="#reserve">Reserve</a>
+  </div>
+  <a href="#reserve" class="nav-cta">Reserve yours</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <img class="bg" src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/691326617b56547773e30dfd_LangenLightspeed-015%201_warm.avif" alt="Langen Lightspeed">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <img class="hero-wordmark rev" src="Lightspeed-white.png" alt="Lightspeed">
+    <div class="hero-eyebrow rev d1">185 motorcycles &nbsp;&middot;&nbsp; Hand-built in Wigan, England</div>
+    <p class="hero-sub rev d2">A 185 horsepower British motorcycle built in an edition of 185. Every component chosen with obsessive precision. Every detail negotiated between engineer and rider — not committee and accountant.</p>
+    <div class="hero-actions rev d3">
+      <a href="#configure" class="btn-p">Configure yours</a>
+      <a href="#specification" class="btn-g">Full specification</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div>Scroll to explore</div>
+</div>
+
+<!-- NUMBERS -->
+<div class="numbers">
+  <div class="n-item rev"><div class="n-val">185<span class="n-unit">hp</span></div><div class="n-label">Peak power</div><div class="n-sub">1,190cc Rotax V-twin</div></div>
+  <div class="n-item rev d1"><div class="n-val">138<span class="n-unit">Nm</span></div><div class="n-label">Peak torque</div><div class="n-sub">72° V configuration</div></div>
+  <div class="n-item rev d2"><div class="n-val">185<span class="n-unit">kg</span></div><div class="n-label">Wet weight</div><div class="n-sub">Carbon fibre construction</div></div>
+  <div class="n-item rev d3"><div class="n-val">185</div><div class="n-label">Total production</div><div class="n-sub">Each built to individual order</div></div>
+</div>
+
+<!-- ENGINE / POWERTRAIN -->
+<div id="performance" class="engine-sec">
+  <div>
+    <div class="sec-lbl rev">Powertrain</div>
+    <h2 class="sec-h rev">Built<br>by <em>Buell</em></h2>
+    <p class="sec-b rev">The Lightspeed is powered by a bespoke 1,190cc 72° Rotax V-twin developed in partnership with Buell. Chosen not for its numbers alone, but for its character — a broad, muscular powerband that rewards every throttle input with absolute intent.</p>
+    <div class="e-stats rev" style="margin-top:48px">
+      <div class="e-stat"><div class="e-stat-val">1,190cc</div><div class="e-stat-lbl">Displacement</div></div>
+      <div class="e-stat"><div class="e-stat-val">72°</div><div class="e-stat-lbl">V-angle</div></div>
+      <div class="e-stat"><div class="e-stat-val">Rotax</div><div class="e-stat-lbl">Engine manufacturer</div></div>
+      <div class="e-stat"><div class="e-stat-val">Buell</div><div class="e-stat-lbl">Build partner</div></div>
+    </div>
+  </div>
+  <div class="rev d1">
+    <div class="engine-vis">
+      <img src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/691359e42d5943ef0aed816d_lightspeed-homepage-2025.avif" alt="Langen Lightspeed">
+    </div>
+  </div>
+</div>
+
+<!-- ELECTRONICS -->
+<div id="electronics" class="elec-sec">
+  <div class="sec-lbl rev">In-house electronics suite</div>
+  <h2 class="sec-h rev">The intelligence<br><em>inside</em></h2>
+  <p class="sec-b rev">Every Lightspeed ships with a full electronic suite designed and developed in-house at Langen — not adapted from an existing platform, but built from the ground up for this motorcycle.</p>
+  <div class="elec-grid">
+    <div class="elec-item rev"><div class="elec-n">01</div><div class="elec-t">Traction Control</div><div class="elec-d">Multi-mode system calibrated for road and track. Intervenes with surgical precision — invisible when not needed, decisive when it is.</div></div>
+    <div class="elec-item rev d1"><div class="elec-n">02</div><div class="elec-t">Launch Control</div><div class="elec-d">Optimises power delivery from a standing start. Eliminates wheel-spin while preserving the raw sensation of 185 horsepower leaving the line.</div></div>
+    <div class="elec-item rev d2"><div class="elec-n">03</div><div class="elec-t">Wheelie Control</div><div class="elec-d">Monitors and manages front-wheel lift in real time. Configurable for riders who want to manage it themselves.</div></div>
+    <div class="elec-item rev"><div class="elec-n">04</div><div class="elec-t">Cruise Control</div><div class="elec-d">Refined cruise management for long-distance capability. The Lightspeed is not a track-only machine — it is built to be ridden.</div></div>
+    <div class="elec-item rev d1"><div class="elec-n">05</div><div class="elec-t">ABS</div><div class="elec-d">Cornering-capable ABS via HEL stainless braided lines and EBC compound. Balanced feel with maximum stopping confidence.</div></div>
+    <div class="elec-item rev d2"><div class="elec-n">06</div><div class="elec-t">Smiths Dashboard</div><div class="elec-d">A bespoke instrument cluster produced by Smiths of England. Analogue clarity meets digital precision — designed exclusively for the Lightspeed.</div></div>
+  </div>
+</div>
+
+<!-- CHASSIS SPLIT -->
+<div class="split">
+  <div class="split-img">
+    <img src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/658450ae4067358ec7fddf0c_DSC05092-Enhanced-NR2.jpg" alt="Langen Lightspeed chassis detail">
+  </div>
+  <div class="split-txt">
+    <div class="sec-lbl rev">Chassis &amp; Suspension</div>
+    <h2 class="sec-h rev"><em>Steel trellis.</em><br>Carbon skin.</h2>
+    <p class="sec-b rev" style="margin-bottom:36px">A hand-welded chromoly steel trellis frame — chosen for its feel and tuneability. Carbon fibre bodywork wraps the architecture, delivering mass reduction without sacrificing the rigidity the chassis demands.</p>
+    <div>
+      <div class="susp-item rev">
+        <div class="susp-line"></div>
+        <div><div class="susp-key">Front suspension</div><div class="susp-val">Öhlins fully adjustable forks — compression, rebound and spring preload individually configured</div></div>
+      </div>
+      <div class="susp-item rev d1">
+        <div class="susp-line"></div>
+        <div><div class="susp-key">Rear suspension</div><div class="susp-val">Öhlins piggyback remote reservoir shock — fully adjustable, set for the individual rider</div></div>
+      </div>
+      <div class="susp-item rev d2">
+        <div class="susp-line"></div>
+        <div><div class="susp-key">Brakes</div><div class="susp-val">HEL stainless braided lines · EBC compound · Cornering-capable ABS</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SPECIFICATION -->
+<div id="specification" class="specs-sec">
+  <div class="sec-lbl rev">Full specification</div>
+  <h2 class="sec-h rev">Every detail,<br><em>disclosed</em></h2>
+  <div class="specs-grid">
+    <div>
+      <div class="specs-grp rev">
+        <div class="specs-grp-t">Engine</div>
+        <div class="spec-row"><span class="spec-k">Configuration</span><span class="spec-v">1,190cc 72° V-twin</span></div>
+        <div class="spec-row"><span class="spec-k">Build partner</span><span class="spec-v">Rotax / Buell</span></div>
+        <div class="spec-row"><span class="spec-k">Peak power</span><span class="spec-v">185 hp</span></div>
+        <div class="spec-row"><span class="spec-k">Peak torque</span><span class="spec-v">138 Nm</span></div>
+        <div class="spec-row"><span class="spec-k">Cooling</span><span class="spec-v">Liquid cooled</span></div>
+      </div>
+      <div class="specs-grp rev">
+        <div class="specs-grp-t">Chassis</div>
+        <div class="spec-row"><span class="spec-k">Frame</span><span class="spec-v">Chromoly steel trellis</span></div>
+        <div class="spec-row"><span class="spec-k">Bodywork</span><span class="spec-v">Carbon fibre</span></div>
+        <div class="spec-row"><span class="spec-k">Wet weight</span><span class="spec-v">185 kg</span></div>
+      </div>
+      <div class="specs-grp rev">
+        <div class="specs-grp-t">Suspension</div>
+        <div class="spec-row"><span class="spec-k">Front</span><span class="spec-v">Öhlins fully adjustable forks</span></div>
+        <div class="spec-row"><span class="spec-k">Rear</span><span class="spec-v">Öhlins piggyback reservoir</span></div>
+        <div class="spec-row"><span class="spec-k">Adjustment</span><span class="spec-v">Compression · Rebound · Preload</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="specs-grp rev">
+        <div class="specs-grp-t">Brakes</div>
+        <div class="spec-row"><span class="spec-k">Lines</span><span class="spec-v">HEL stainless braided</span></div>
+        <div class="spec-row"><span class="spec-k">Compound</span><span class="spec-v">EBC</span></div>
+        <div class="spec-row"><span class="spec-k">ABS</span><span class="spec-v">Cornering-capable</span></div>
+      </div>
+      <div class="specs-grp rev">
+        <div class="specs-grp-t">Electronics</div>
+        <div class="spec-row"><span class="spec-k">Traction control</span><span class="spec-v">Multi-mode, in-house</span></div>
+        <div class="spec-row"><span class="spec-k">Launch control</span><span class="spec-v">Included</span></div>
+        <div class="spec-row"><span class="spec-k">Wheelie control</span><span class="spec-v">Included</span></div>
+        <div class="spec-row"><span class="spec-k">Cruise control</span><span class="spec-v">Included</span></div>
+        <div class="spec-row"><span class="spec-k">Instrument</span><span class="spec-v">Bespoke Smiths dashboard</span></div>
+      </div>
+      <div class="specs-grp rev">
+        <div class="specs-grp-t">Production &amp; Pricing</div>
+        <div class="spec-row"><span class="spec-k">Total units</span><span class="spec-v">185</span></div>
+        <div class="spec-row"><span class="spec-k">Price</span><span class="spec-v">£37,000 + VAT</span></div>
+        <div class="spec-row"><span class="spec-k">UK deliveries</span><span class="spec-v">Summer 2026</span></div>
+        <div class="spec-row"><span class="spec-k">Global homologation</span><span class="spec-v">January 2027</span></div>
+        <div class="spec-row"><span class="spec-k">Built at</span><span class="spec-v">Wigan, Greater Manchester</span></div>
+      </div>
+    </div>
+    <div class="specs-note rev">
+      <div style="color:var(--gold);font-size:20px;flex-shrink:0;margin-top:2px">◈</div>
+      <p><strong>Every Lightspeed is built to individual order.</strong> Specification, geometry, ergonomics and finish are discussed and agreed with each owner during the build journey. The figures above represent the standard configuration — your motorcycle may differ in ways that improve on them.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CONFIGURE -->
+<div id="configure" class="cfg-sec">
+  <div class="cfg-inner">
+    <div>
+      <div class="sec-lbl rev">Your Lightspeed</div>
+      <h2 class="sec-h rev">Built for<br><em>one person</em></h2>
+      <p class="sec-b rev">No two Lightspeeds leave Wigan the same. Bodywork colour, chassis finish, wheel specification — each choice is yours. Use our AI configurator to visualise what your motorcycle could look like.</p>
+      <div class="cfg-opts">
+        <a href="configurator.html" class="cfg-opt rev">
+          <div class="cfg-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18" stroke-dasharray="2 4"/></svg></div>
+          <div><div class="cfg-lbl">Bodywork colour</div><div class="cfg-sub">Paint finish · Gloss, satin or matt</div></div>
+          <div class="cfg-arr">→</div>
+        </a>
+        <a href="configurator.html" class="cfg-opt rev d1">
+          <div class="cfg-icon"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="8" rx="2"/><path d="M7 8V6a2 2 0 014 0v2M13 8V6a2 2 0 014 0v2"/></svg></div>
+          <div><div class="cfg-lbl">Chassis &amp; swingarm colour</div><div class="cfg-sub">Powder coat · Anodised · Custom finish</div></div>
+          <div class="cfg-arr">→</div>
+        </a>
+        <a href="configurator.html" class="cfg-opt rev d2">
+          <div class="cfg-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="4" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="20"/><line x1="4" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="20" y2="12"/></svg></div>
+          <div><div class="cfg-lbl">Wheels</div><div class="cfg-sub">Spoked or CNC machined · Colour choice</div></div>
+          <div class="cfg-arr">→</div>
+        </a>
+      </div>
+      <div class="cfg-cta rev">
+        <p>The configurator uses AI image generation to render your choices on a real Lightspeed. Enter your details to begin — your specification comes directly to Christofer and the team.</p>
+        <a href="configurator.html" class="btn-p">Open configurator</a>
+      </div>
+    </div>
+    <div class="rev d1">
+      <div class="cfg-img">
+        <img src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/691326617b56547773e30dfd_LangenLightspeed-015%201_warm.avif" alt="Langen Lightspeed">
+        <div class="cfg-img-ov"><span class="cfg-badge">AI visualisation available</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRESS — Two Stroke reviews, correctly labelled, all linked -->
+<div class="press-sec">
+  <div class="sec-lbl rev">Critical acclaim</div>
+  <h2 class="sec-h rev">What the press<br><em>said</em></h2>
+  <p class="rev" style="font-size:14px;color:var(--w55);margin-top:-8px;letter-spacing:.5px">Reviews of the Langen Two Stroke · Lightspeed press coverage to follow on delivery</p>
+  <div class="press-grid">
+    <a href="https://www.motorcycle.com/bikes/manufacturer/2023-langen-two-stroke-250-road-test-44595496" target="_blank" rel="noopener" class="press-card rev">
+      <div class="press-q">Excellent power to weight ratio, and the benchmark handling of its sweet-steering chassis. Langen's debut model has hit the bullseye.</div>
+      <div><div class="press-src">Motorcycle.com</div><div class="press-tag">Two Stroke</div></div>
+      <div class="press-arr">↗</div>
+    </a>
+    <a href="https://www.motorcyclenews.com/bike-reviews/langen/two-stroke/2022/" target="_blank" rel="noopener" class="press-card rev d1">
+      <div class="press-q">Build quality is spectacular. The whole package is a triumph of handling prowess.</div>
+      <div><div class="press-src">Motorcycle News</div><div class="press-tag">Two Stroke</div></div>
+      <div class="press-arr">↗</div>
+    </a>
+    <a href="https://www.youtube.com/watch?v=YiX2WigPpPc" target="_blank" rel="noopener" class="press-card rev d2">
+      <div class="press-q">In the flesh it is just stunning. The way it rides is incredible.</div>
+      <div><div class="press-src">The Late Brake Show</div><div class="press-tag">Two Stroke</div></div>
+      <div class="press-arr">↗</div>
+    </a>
+  </div>
+</div>
+
+<!-- DELIVERY -->
+<div class="del-sec">
+  <div class="del-item rev">
+    <div class="del-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+    <div class="del-t">Your build journey</div>
+    <div class="del-d">From first contact to delivery, every Lightspeed owner works directly with Christofer and the team — a hands-on process ensuring the motorcycle is exactly right for you.</div>
+  </div>
+  <div class="del-item rev d1">
+    <div class="del-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+    <div class="del-t">UK deliveries from Summer 2026</div>
+    <div class="del-d">UK-homologated Lightspeeds begin leaving Wigan in Summer 2026. Global-homologated versions follow in January 2027. Limited build slots remain.</div>
+  </div>
+  <div class="del-item rev d2">
+    <div class="del-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+    <div class="del-t">Langen warranty &amp; aftercare</div>
+    <div class="del-d">Every Lightspeed is backed by the full Langen aftercare programme — direct access to the people who built your motorcycle, for as long as you own it.</div>
+  </div>
+</div>
+
+<!-- RESERVE -->
+<div id="reserve" class="rsv-sec">
+  <div class="rsv-bg"></div>
+  <img class="rsv-ls12" src="LS12-reversed.png" alt="">
+  <div class="rsv-inner">
+    <div class="rsv-lbl rev">Limited to 185 units worldwide</div>
+    <h2 class="rsv-h rev">Secure your<br><em>Lightspeed</em></h2>
+    <p class="rsv-b rev">Build slots are allocated in order of reservation. Contact the team now to discuss your specification, timeline and the Langen build journey.</p>
+    <div class="rsv-acts rev">
+      <a href="/cdn-cgi/l/email-protection#86efe8e0e9c6eae7e8e1e3e8ebe9f2e9f4e5ffe5eae3f5a8e5e9a8f3edb9f5f3e4ece3e5f2bbcaefe1eef2f5f6e3e3e2a3b4b6d4e3f5e3f4f0e7f2efe9e8a3b4b6c3e8f7f3eff4ff" class="btn-p">Enquire now</a>
+      <a href="tel:+4401942724059" class="btn-g">+44 01942 724 059</a>
+    </div>
+    <div class="cbar rev">
+      <div class="cbar-item"><span class="cbar-lbl">Email</span><a href="/cdn-cgi/l/email-protection#3d54535b527d515c535a5853505249524f5e445e51584e135e52134856" class="cbar-val"><span class="__cf_email__" data-cfemail="81e8efe7eec1ede0efe6e4efeceef5eef3e2f8e2ede4f2afe2eeaff4ea">[email&#160;protected]</span></a></div>
+      <div class="cbar-item"><span class="cbar-lbl">Location</span><span class="cbar-val">Kingfisher Court, Wigan WN4 9DW</span></div>
+      <div class="cbar-item"><span class="cbar-lbl">Availability</span><span class="cbar-val">Build slots limited — enquire now</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap">
+    <img class="foot-logo" src="Langen-Motorcycles-Logo-White.png" alt="Langen Motorcycles">
+    <span class="foot-copy">© 2025 Langen Technology Ltd &nbsp;·&nbsp; Registered in England &amp; Wales 11601010</span>
+  </div>
+  <div class="foot-links">
+    <a href="index.html">Home</a>
+    <a href="#">Two Stroke</a>
+    <a href="#">About</a>
+    <a href="#">News</a>
+    <a href="#">Contact</a>
+    <a href="#">Privacy</a>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}});
+},{threshold:0.1,rootMargin:'0px 0px -32px 0px'});
+document.querySelectorAll('.rev').forEach(el=>obs.observe(el));
+
+const nav = document.querySelector('nav');
+window.addEventListener('scro
