@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Configure Your Lightspeed — Langen Motorcycles</title>
+<meta name="description" content="Configure your Langen Lightspeed. Choose your colours, your wheels, and see it rendered by AI — then enquire with your specification.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --black:#080807;--bg:#0c0b0a;--bg2:#111010;--bg3:#191715;--bg4:#1f1d1a;
+  --gold:#c9a962;--gold2:#e2c47a;--gold-dim:rgba(201,169,98,.12);--gold-glow:rgba(201,169,98,.2);
+  --w:#f5f4f2;--w90:rgba(245,244,242,.9);--w75:rgba(245,244,242,.75);
+  --w55:rgba(245,244,242,.55);--w30:rgba(245,244,242,.3);--w12:rgba(245,244,242,.12);
+  --b:rgba(201,169,98,.15);--b2:rgba(201,169,98,.3);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--w);min-height:100vh;-webkit-font-smoothing:antialiased;font-size:15px;line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:68px;background:rgba(8,8,7,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:100}
+.nav-logo a img{height:26px;opacity:.9}
+.nav-title{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold)}
+.nav-back{font-size:11px;color:var(--w55);text-decoration:none;letter-spacing:1.5px;transition:color .2s;text-transform:uppercase}
+.nav-back:hover{color:var(--gold)}
+
+/* SCREENS */
+.screen{display:none;min-height:calc(100vh - 68px)}
+.screen.active{display:flex;flex-direction:column}
+
+/* ── GATE SCREEN ── */
+#screen-gate{align-items:center;justify-content:center;position:relative;overflow:hidden;background:var(--bg)}
+.gate-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 60% 50%,rgba(201,169,98,.06),transparent);pointer-events:none}
+.gate-img{position:absolute;right:0;top:0;bottom:0;width:55%;object-fit:cover;object-position:center;filter:brightness(.55) contrast(1.1)}
+.gate-img-fade{position:absolute;inset:0;background:linear-gradient(to right,var(--bg) 35%,rgba(8,8,7,.3) 70%,rgba(8,8,7,.5) 100%)}
+.gate-content{position:relative;z-index:2;padding:80px;max-width:560px;width:100%}
+.gate-eyebrow{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:14px}
+.gate-eyebrow::before{content:'';width:24px;height:1px;background:var(--gold)}
+.gate-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(48px,5vw,72px);font-weight:300;line-height:.95;letter-spacing:-2px;color:var(--w);margin-bottom:20px}
+.gate-title em{font-style:italic;color:var(--gold);display:block}
+.gate-sub{font-size:16px;color:var(--w75);line-height:1.75;font-weight:300;margin-bottom:40px}
+.gate-form{background:rgba(12,11,10,.8);border:1px solid var(--b);border-radius:3px;padding:36px;backdrop-filter:blur(12px)}
+.gate-form-title{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:24px;padding-bottom:14px;border-bottom:1px solid var(--b)}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--w55);margin-bottom:8px}
+.field input{width:100%;background:var(--bg3);border:1px solid var(--b);color:var(--w90);padding:13px 16px;border-radius:2px;font-size:14px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .2s}
+.field input:focus{border-color:var(--gold)}
+.field input::placeholder{color:var(--w30)}
+.gate-privacy{font-size:11px;color:var(--w30);line-height:1.6;margin-bottom:20px}
+.gate-privacy a{color:var(--w55);text-decoration:none}
+.btn-gold{width:100%;background:var(--gold);color:var(--black);border:none;padding:16px;border-radius:2px;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:500;cursor:pointer;transition:all .3s;font-family:'DM Sans',sans-serif}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-1px);box-shadow:0 8px 32px rgba(201,169,98,.3)}
+.btn-gold:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+
+
+/* ── CONFIG SCREEN ── */
+#screen-config{flex-direction:row}
+.config-sidebar{width:420px;flex-shrink:0;background:var(--bg2);border-right:1px solid var(--b);display:flex;flex-direction:column;overflow-y:auto;max-height:calc(100vh - 68px);position:sticky;top:68px}
+.config-main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px;background:var(--bg);position:relative}
+
+/* STEPS HEADER */
+.steps-header{padding:32px 36px 24px;border-bottom:1px solid var(--b)}
+.steps-header h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;font-weight:300;color:var(--w);margin-bottom:4px}
+.steps-header p{font-size:12px;color:var(--w55)}
+.step-pills{display:flex;gap:6px;margin-top:16px}
+.step-pill{height:3px;flex:1;background:var(--w12);border-radius:2px;transition:background .4s}
+.step-pill.done{background:var(--gold)}
+.step-pill.active{background:var(--gold2)}
+
+/* STEP PANEL */
+.step-panel{display:none;padding:28px 36px;flex:1}
+.step-panel.active{display:block}
+.step-label{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.step-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-weight:300;color:var(--w);margin-bottom:20px}
+
+/* COLOUR SWATCHES */
+.swatch-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
+.swatch{cursor:pointer;border-radius:3px;overflow:hidden;border:2px solid transparent;transition:all .25s;position:relative}
+.swatch:hover{border-color:var(--gold2);transform:scale(1.03)}
+.swatch.selected{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
+.swatch-dot{height:48px;border-radius:1px}
+.swatch-name{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--w55);padding:6px 4px;text-align:center;background:var(--bg3)}
+.swatch.selected .swatch-name{color:var(--gold)}
+.swatch-check{display:none;position:absolute;top:4px;right:4px;width:16px;height:16px;background:var(--gold);border-radius:50%;align-items:center;justify-content:center;font-size:8px;color:var(--black)}
+.swatch.selected .swatch-check{display:flex}
+
+/* BESPOKE INPUT */
+.bespoke-row{display:flex;gap:10px;margin-bottom:20px}
+.bespoke-input{flex:1;background:var(--bg3);border:1px solid var(--b);color:var(--w90);padding:11px 14px;border-radius:2px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .2s}
+.bespoke-input:focus{border-color:var(--gold)}
+.bespoke-input::placeholder{color:var(--w30)}
+.bespoke-btn{background:transparent;border:1px solid var(--b2);color:var(--gold);padding:11px 16px;border-radius:2px;font-size:10px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif;white-space:nowrap}
+.bespoke-btn:hover{background:var(--gold-dim)}
+
+/* WHEEL TYPE */
+.wheel-type-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.wheel-option{cursor:pointer;border:1px solid var(--b);border-radius:3px;overflow:hidden;transition:all .25s}
+.wheel-option:hover{border-color:var(--b2)}
+.wheel-option.selected{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
+.wheel-option-img{height:100px;overflow:hidden;position:relative;background:var(--bg3)}
+.wheel-option-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.7)}
+.wheel-option-body{padding:12px 14px;background:var(--bg3)}
+.wheel-option-name{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--w75);margin-bottom:4px}
+.wheel-option-sub{font-size:11px;color:var(--w55)}
+.wheel-option.selected .wheel-option-name{color:var(--gold)}
+
+/* SUMMARY */
+.config-summary{padding:20px 36px;border-top:1px solid var(--b);background:var(--bg3)}
+.summary-title{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--w55);margin-bottom:12px}
+.summary-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(245,244,242,.05);font-size:12px}
+.summary-key{color:var(--w55)}
+.summary-val{color:var(--w90);font-weight:400}
+
+/* NAV BUTTONS */
+.step-nav{padding:20px 36px;border-top:1px solid var(--b);display:flex;gap:12px}
+.btn-step-next{flex:1;background:var(--gold);color:var(--black);border:none;padding:14px;border-radius:2px;font-size:10px;letter-spacing:3px;text-transform:uppercase;font-weight:500;cursor:pointer;transition:all .3s;font-family:'DM Sans',sans-serif}
+.btn-step-next:hover{background:var(--gold2)}
+.btn-step-next:disabled{opacity:.35;cursor:not-allowed}
+.btn-step-back{background:transparent;border:1px solid var(--b);color:var(--w55);padding:14px 20px;border-radius:2px;font-size:10px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
+.btn-step-back:hover{border-color:var(--b2);color:var(--w75)}
+
+/* CONFIG VISUAL */
+.config-visual{position:relative;width:100%;max-width:720px;margin:0 auto}
+.config-bike-img{width:100%;border-radius:3px;display:block;filter:brightness(.9) contrast(1.05)}
+.config-spec-tag{position:absolute;bottom:24px;left:24px;background:rgba(8,8,7,.85);border:1px solid var(--b2);border-radius:3px;padding:16px 20px;backdrop-filter:blur(12px)}
+.config-spec-tag p{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.config-spec-row{font-size:12px;color:var(--w75);margin-top:4px}
+.config-step-hint{position:absolute;top:24px;right:24px;background:rgba(8,8,7,.8);border:1px solid var(--b);border-radius:2px;padding:10px 16px;font-size:11px;color:var(--w55);letter-spacing:1px;backdrop-filter:blur(8px)}
+
+/* ── GENERATE SCREEN ── */
+#screen-generate{align-items:center;justify-content:center;padding:64px 48px}
+.generate-inner{max-width:720px;width:100%;text-align:center}
+.generate-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(36px,4vw,56px);font-weight:300;color:var(--w);margin-bottom:16px;letter-spacing:-1px}
+.generate-title em{font-style:italic;color:var(--gold)}
+.generate-spec-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--b);border:1px solid var(--b);border-radius:3px;overflow:hidden;margin:40px 0;text-align:left}
+.gen-spec-item{background:var(--bg2);padding:20px 24px}
+.gen-spec-lbl{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--w55);margin-bottom:6px}
+.gen-spec-val{font-size:15px;color:var(--w90);font-weight:400}
+.generate-prompt-preview{background:var(--bg2);border:1px solid var(--b);border-radius:3px;padding:20px 24px;margin-bottom:32px;text-align:left}
+.prompt-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--w55);margin-bottom:10px}
+.prompt-text{font-size:13px;color:var(--w75);line-height:1.7;font-style:italic}
+.btn-generate{background:var(--gold);color:var(--black);border:none;padding:18px 56px;border-radius:2px;font-size:12px;letter-spacing:3px;text-transform:uppercase;font-weight:500;cursor:pointer;transition:all .3s;font-family:'DM Sans',sans-serif;display:inline-flex;align-items:center;gap:12px}
+.btn-generate:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 12px 40px rgba(201,169,98,.3)}
+.btn-generate:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+.edit-link{display:inline-block;margin-top:16px;font-size:11px;color:var(--w55);cursor:pointer;text-decoration:underline;text-underline-offset:3px;transition:color .2s}
+.edit-link:hover{color:var(--gold)}
+
+/* ── RESULT SCREEN ── */
+#screen-result{align-items:center;justify-content:flex-start;padding:0}
+.result-layout{display:grid;grid-template-columns:1fr 480px;min-height:calc(100vh - 68px);width:100%}
+.result-image-pane{position:relative;overflow:hidden;background:var(--bg3)}
+.result-image-pane img{width:100%;height:100%;object-fit:cover}
+.result-loading{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--bg3);gap:20px}
+.result-loading.hide{display:none}
+.spinner{width:48px;height:48px;border:2px solid var(--b);border-top-color:var(--gold);border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);animation:pulse 2s ease-in-out infinite}
+.loading-sub{font-size:12px;color:var(--w55)}
+@keyframes pulse{0%,100%{opacity:.5}50%{opacity:1}}
+.result-panel{background:var(--bg2);border-left:1px solid var(--b);padding:56px 48px;display:flex;flex-direction:column;overflow-y:auto}
+.result-eyebrow{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.result-eyebrow::before{content:'';width:20px;height:1px;background:var(--gold)}
+.result-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:32px;font-weight:300;color:var(--w);line-height:1.1;margin-bottom:28px;letter-spacing:-.5px}
+.result-spec{background:var(--bg3);border:1px solid var(--b);border-radius:3px;padding:20px 24px;margin-bottom:32px}
+.result-spec-title{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--w55);margin-bottom:14px}
+.result-spec-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(245,244,242,.05);font-size:13px}
+.result-spec-row:last-child{border-bottom:none}
+.result-spec-key{color:var(--w55)}
+.result-spec-val{color:var(--w90)}
+.result-actions{display:flex;flex-direction:column;gap:12px;margin-bottom:32px}
+.action-btn{display:flex;align-items:center;gap:14px;padding:16px 20px;border-radius:3px;cursor:pointer;transition:all .25s;font-family:'DM Sans',sans-serif;text-decoration:none;border:none}
+.action-btn.primary{background:var(--gold);color:var(--black)}
+.action-btn.primary:hover{background:var(--gold2);transform:translateY(-1px);box-shadow:0 8px 24px rgba(201,169,98,.28)}
+.action-btn.secondary{background:transparent;border:1px solid var(--b2);color:var(--gold)}
+.action-btn.secondary:hover{background:var(--gold-dim)}
+.action-btn.ghost{background:transparent;border:1px solid var(--b);color:var(--w55)}
+.action-btn.ghost:hover{border-color:var(--b2);color:var(--w75)}
+.action-icon{width:20px;height:20px;flex-shrink:0}
+.action-icon svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.5}
+.action-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:500}
+.action-sub{font-size:11px;opacity:.6;margin-left:auto}
+.share-row{display:flex;gap:10px}
+.share-pill{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:11px;background:var(--bg3);border:1px solid var(--b);border-radius:3px;cursor:pointer;transition:all .2s;font-size:11px;color:var(--w55);text-decoration:none}
+.share-pill:hover{border-color:var(--b2);color:var(--w75)}
+.share-pill svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.5;flex-shrink:0}
+.result-restart{font-size:11px;color:var(--w30);cursor:pointer;text-align:center;transition:color .2s;text-decoration:underline;text-underline-offset:3px}
+.result-restart:hover{color:var(--gold)}
+.error-msg{background:rgba(220,53,69,.1);border:1px solid rgba(220,53,69,.3);color:#dc6a6a;padding:16px;border-radius:3px;font-size:13px;margin-bottom:16px;display:none}
+.error-msg.show{display:block}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  #screen-config{flex-direction:column}
+  .config-sidebar{width:100%;max-height:none;position:static}
+  .result-layout{grid-template-columns:1fr}
+  .result-image-pane{min-height:320px}
+  nav{padding:0 24px}
+  .gate-content{padding:40px 24px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><a href="lightspeed.html"><img src="Langen-Motorcycles-Logo-White.png" alt="Langen Motorcycles"></a></div>
+  <div class="nav-title">Lightspeed Configurator</div>
+  <a href="lightspeed.html" class="nav-back">← Back to Lightspeed</a>
+</nav>
+
+</div>
+
+<!-- SCREEN 1: EMAIL GATE -->
+<div id="screen-gate" class="screen active">
+  <div class="gate-bg"></div>
+  <img class="gate-img"
+    src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/691326617b56547773e30dfd_LangenLightspeed-015%201_warm.avif"
+    alt="Langen Lightspeed">
+  <div class="gate-img-fade"></div>
+  <div class="gate-content">
+    <div class="gate-eyebrow">Lightspeed configurator</div>
+    <h1 class="gate-title">
+      Build your<br>
+      <em>Lightspeed</em>
+    </h1>
+    <p class="gate-sub">Choose your colours and wheel specification. Our AI will render your motorcycle — then send your configuration directly to the Langen team.</p>
+    <div class="gate-form">
+      <div class="gate-form-title">Begin your configuration</div>
+      <div class="field">
+        <label>First name</label>
+        <input type="text" id="gate-name" placeholder="Christofer" autocomplete="given-name">
+      </div>
+      <div class="field">
+        <label>Email address</label>
+        <input type="email" id="gate-email" placeholder="your@email.com" autocomplete="email">
+      </div>
+      <p class="gate-privacy">Your details are used to send your configuration to the Langen team. We won't share them with anyone or use them for marketing without your permission. <a href="#">Privacy policy</a></p>
+      <button class="btn-gold" id="gate-btn" onclick="startConfig()">Start configuring →</button>
+    </div>
+  </div>
+</div>
+
+<!-- SCREEN 2: CONFIGURATOR -->
+<div id="screen-config" class="screen">
+  <!-- SIDEBAR -->
+  <div class="config-sidebar">
+    <div class="steps-header">
+      <h2>Your Lightspeed</h2>
+      <p>3 choices · Takes about 2 minutes</p>
+      <div class="step-pills">
+        <div class="step-pill active" id="pill-1"></div>
+        <div class="step-pill" id="pill-2"></div>
+        <div class="step-pill" id="pill-3"></div>
+      </div>
+    </div>
+
+    <!-- STEP 1: BODYWORK -->
+    <div class="step-panel active" id="step-1">
+      <div class="step-label">Step 1 of 3</div>
+      <div class="step-title">Bodywork colour</div>
+      <div class="swatch-grid" id="bodywork-swatches">
+        <div class="swatch" data-value="Midnight Black" onclick="selectSwatch('bodywork','Midnight Black',this)">
+          <div class="swatch-dot" style="background:#1a1a1a"></div>
+          <div class="swatch-name">Midnight<br>Black</div>
+          <div class="swatch-check">✓</div>
+        </div>
+        <div class="swatch" data-value="Titanium Silver" onclick="selectSwatch('bodywork','Titanium Silver',this)">
+          <div class="swatch-dot" style="background:linear-gradient(135deg,#8a8a8a,#c0c0c0)"></div>
+          <div class="swatch-name">Titanium<br>Silver</div>
+          <div class="swatch-check">✓</div>
+        </div>
+        <div class="swatch" data-value="Carbon Raw" onclick="selectSwatch('bodywork','Carbon Raw',this)">
+          <div class="swatch-dot" style="background:repeating-linear-gradient(45deg,#2a2a2a 0,#2a2a2a 2px,#1e1e1e 2px,#1e1e1e 4px)"></div>
+          <div class="swatch-name">Carbon<br>Raw</div>
+          <div class="swatch-check">✓</div>
+        </div>
+        <div class="swatch" data-value="Gloss White" onclick="selectSwatch('bodywork','Gloss White',this)">
+          <div class="swatch-dot" style="background:#f0f0ee;border:1px solid #ccc"></div>
+          <div class="swatch-name">Gloss<br>White</div>
+          <div class="swatch-check">✓</div>
+        </div>
+        <div class="swatch" data-value="British Racing Green" onclick="selectSwatch('bodywork','British Racing Green',this)">
+          <div class="swatch-dot" style="background:#2d5016"></div>
+          <div class="swatch-name">Racing<br>Green</div>
+          <div class="swatch-check">✓</div>
+        </div>
+        <div class="swatch" data-value="Satin Blue" onclick="selectSwatch('bodywork','Satin Blue',this)">
+          <div class="swatch-dot" style="background:#1a3a6b"></div>
+          <div class="swatch-name">Satin<br>Blue</div>
+          <div class="swatch-check">✓</div>
+        </div>
+        <div class="swatch" data-value="Burnt Orange" onclick="selectSwatch('bodywork','Burnt Orange',this)">
+          <div class="swatch-dot" style="background:#b84a1a"></div>
+          <div class="swatch-name">Burnt<br>Orange</div>
+          <div class="swatch-check">✓</div>
+        </div>
+        <div class="swatch" data-value="Satin Gold" onclick="selectSwatch('bodywork','Satin Gold',this)">
+          <div class="swatch-dot" style="background:linear-gradient(135deg,#c9a962,#8a6e35)"></div>
+          <div class="swatch-name">Satin<br>Gold</div>
+          <div class="swatch-check">✓</div>
+        </div>
+      </div>
+      <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--w55);margin-bottom:10px">Bespoke colour</div>
+      <div class="bespoke-row">
+        <input type="text" class="bespoke-input" id="bodywork-bespoke" placeholder="Describe your colour or RAL code...">
+        <button class="bespoke-btn" onclick="setBespoke('bodywork')">Use this</button>
+      </div>
+    </div>
+
+    <!-- STEP 2: CHASSIS -->
+    <div class="step-panel" id="step-2">
+      <div class="step-label">Step 2 of 3</div>
+      <div class="step-title">Chassis &amp; swingarm</div>
+      <div class="swatch-grid" id="chassis-swatches">
+        <div class="swatch" data-value="Satin Black" onclick="selectSwatch('chassis','Satin Black',this)">
+          <div class="swatch-dot" style="background:#1e1e1e"></div>
+          <div class="swatch-name">Satin<br>Black</div>
+          <div class="swatch-check">✓</div>
+        </div>
+        <div class="swatch" data-value="Polished Silver" onclick="selectSwatch('chassis','Polished Silver',this)">
+          <div class="swatch-dot" style="background:linear-gradient(135deg,#a0a0a0,#d8d8d8)"></div>
+          <div class="swatch-name">Polished<br>Silver</div>
+          <div class="swatch-check">✓</div>
+        </div>
+        <div class="swatch" data-value="Gold Anodised" onclick="selectSwatch('chassis','Gold Anodised',this)">
+          <div class="swatch-dot" style="background:linear-gradient(135deg,#c9a962,#a07c35)"></div>
+          <div class="swatch-name">Gold<br>Anodised</div>
+          <div class="swatch-check">✓</div>
+        </div>
+        <div class="swatch" data-value="Raw Titanium" onclick="selectSwatch('chassis','Raw Titanium',this)">
+          <div class="swatch-dot" style="background:linear-gradient(135deg,#6b6b72,#9a9aa8)"></div>
+          <div class="swatch-name">Raw<br>Titanium</div>
+          <div class="swatch-check">✓</div>
+        </div>
+        <div class="swatch" data-value="Gloss White" onclick="selectSwatch('chassis','Gloss White',this)">
+          <div class="swatch-dot" style="background:#f0f0ee;border:1px solid #ccc"></div>
+          <div class="swatch-name">Gloss<br>White</div>
+          <div class="swatch-check">✓</div>
+        </div>
+        <div class="swatch" data-value="Stealth Grey" onclick="selectSwatch('chassis','Stealth Grey',this)">
+          <div class="swatch-dot" style="background:#3a3a3a"></div>
+          <div class="swatch-name">Stealth<br>Grey</div>
+          <div class="swatch-check">✓</div>
+        </div>
+        <div class="swatch" data-value="Copper Anodised" onclick="selectSwatch('chassis','Copper Anodised',this)">
+          <div class="swatch-dot" style="background:linear-gradient(135deg,#8b4513,#cd7f32)"></div>
+          <div class="swatch-name">Copper<br>Anodised</div>
+          <div class="swatch-check">✓</div>
+        </div>
+        <div class="swatch" data-value="Matching bodywork" onclick="selectSwatch('chassis','Matching bodywork',this)">
+          <div class="swatch-dot" style="background:linear-gradient(135deg,var(--gold-dim),var(--bg3));border:1px dashed var(--b2)"></div>
+          <div class="swatch-name">Match<br>bodywork</div>
+          <div class="swatch-check">✓</div>
+        </div>
+      </div>
+      <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--w55);margin-bottom:10px">Bespoke finish</div>
+      <div class="bespoke-row">
+        <input type="text" class="bespoke-input" id="chassis-bespoke" placeholder="e.g. Cerakote, custom powder coat...">
+        <button class="bespoke-btn" onclick="setBespoke('chassis')">Use this</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: WHEELS -->
+    <div class="step-panel" id="step-3">
+      <div class="step-label">Step 3 of 3</div>
+      <div class="step-title">Wheel specification</div>
+      <div class="wheel-type-grid">
+        <div class="wheel-option" id="wheel-spoked" onclick="selectWheelType('Spoked',this)">
+          <div class="wheel-option-img">
+            <img src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/658450ae4067358ec7fddf0c_DSC05092-Enhanced-NR2.jpg" alt="Spoked wheels">
+          </div>
+          <div class="wheel-option-body">
+            <div class="wheel-option-name">Spoked</div>
+            <div class="wheel-option-sub">Classic · Lightweight</div>
+          </div>
+        </div>
+        <div class="wheel-option" id="wheel-cnc" onclick="selectWheelType('CNC Machined',this)">
+          <div class="wheel-option-img">
+            <img src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/691359e42d5943ef0aed816d_lightspeed-homepage-2025.avif" alt="CNC wheels">
+          </div>
+          <div class="wheel-option-body">
+            <div class="wheel-option-name">CNC Machined</div>
+            <div class="wheel-option-sub">Forged · Precision cut</div>
+          </div>
+        </div>
+      </div>
+      <div id="wheel-colour-section" style="display:none">
+        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--w55);margin-bottom:10px">Wheel colour</div>
+        <div class="swatch-grid" id="wheel-swatches" style="grid-template-columns:repeat(5,1fr)">
+          <div class="swatch" data-value="Black" onclick="selectSwatch('wheel-colour','Black',this)">
+            <div class="swatch-dot" style="background:#1a1a1a"></div>
+            <div class="swatch-name">Black</div>
+            <div class="swatch-check">✓</div>
+          </div>
+          <div class="swatch" data-value="Silver" onclick="selectSwatch('wheel-colour','Silver',this)">
+            <div class="swatch-dot" style="background:linear-gradient(135deg,#aaa,#d8d8d8)"></div>
+            <div class="swatch-name">Silver</div>
+            <div class="swatch-check">✓</div>
+          </div>
+          <div class="swatch" data-value="Gold" onclick="selectSwatch('wheel-colour','Gold',this)">
+            <div class="swatch-dot" style="background:linear-gradient(135deg,#c9a962,#a07c35)"></div>
+            <div class="swatch-name">Gold</div>
+            <div class="swatch-check">✓</div>
+          </div>
+          <div class="swatch" data-value="Titanium" onclick="selectSwatch('wheel-colour','Titanium',this)">
+            <div class="swatch-dot" style="background:linear-gradient(135deg,#7a7a88,#a0a0b0)"></div>
+            <div class="swatch-name">Titanium</div>
+            <div class="swatch-check">✓</div>
+          </div>
+          <div class="swatch" data-value="Matching" onclick="selectSwatch('wheel-colour','Matching bodywork',this)">
+            <div class="swatch-dot" style="background:conic-gradient(#1a1a1a,#c9a962,#f0f0ee,#1a1a1a);border:1px solid var(--b2)"></div>
+            <div class="swatch-name">Match</div>
+            <div class="swatch-check">✓</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="config-summary" id="config-summary">
+      <div class="summary-title">Your specification</div>
+      <div class="summary-row"><span class="summary-key">Customer</span><span class="summary-val" id="s-name">—</span></div>
+      <div class="summary-row"><span class="summary-key">Bodywork</span><span class="summary-val" id="s-bodywork">Not selected</span></div>
+      <div class="summary-row"><span class="summary-key">Chassis</span><span class="summary-val" id="s-chassis">Not selected</span></div>
+      <div class="summary-row"><span class="summary-key">Wheels</span><span class="summary-val" id="s-wheels">Not selected</span></div>
+    </div>
+
+    <!-- STEP NAV -->
+    <div class="step-nav" id="step-nav">
+      <button class="btn-step-back" id="btn-back" onclick="prevStep()" style="display:none">← Back</button>
+      <button class="btn-step-next" id="btn-next" onclick="nextStep()">Next step →</button>
+    </div>
+  </div>
+
+  <!-- MAIN VISUAL -->
+  <div class="config-main">
+    <div class="config-visual">
+      <img class="config-bike-img" id="config-bike-preview"
+        src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/691326617b56547773e30dfd_LangenLightspeed-015%201_warm.avif"
+        alt="Langen Lightspeed">
+      <div class="config-spec-tag">
+        <p>Current specification</p>
+        <div class="config-spec-row" id="preview-spec-1">Choose your bodywork colour →</div>
+        <div class="config-spec-row" id="preview-spec-2" style="opacity:.4">Chassis colour pending</div>
+        <div class="config-spec-row" id="preview-spec-3" style="opacity:.4">Wheel spec pending</div>
+      </div>
+      <div class="config-step-hint" id="step-hint">Step 1 of 3</div>
+    </div>
+  </div>
+</div>
+
+<!-- SCREEN 3: GENERATE -->
+<div id="screen-generate" class="screen">
+  <div class="generate-inner">
+    <div style="font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:12px"><span style="width:20px;height:1px;background:var(--gold);display:inline-block"></span>Your configuration<span style="width:20px;height:1px;background:var(--gold);display:inline-block"></span></div>
+    <h2 class="generate-title">Ready to<br><em>visualise</em></h2>
+    <div class="generate-spec-summary">
+      <div class="gen-spec-item"><div class="gen-spec-lbl">Bodywork</div><div class="gen-spec-val" id="gs-bodywork">—</div></div>
+      <div class="gen-spec-item"><div class="gen-spec-lbl">Chassis &amp; swingarm</div><div class="gen-spec-val" id="gs-chassis">—</div></div>
+      <div class="gen-spec-item"><div class="gen-spec-lbl">Wheels</div><div class="gen-spec-val" id="gs-wheels">—</div></div>
+    </div>
+    <div class="generate-prompt-preview">
+      <div class="prompt-label">AI will be asked to render</div>
+      <div class="prompt-text" id="generate-prompt-preview">—</div>
+    </div>
+    <button class="btn-generate" id="btn-generate" onclick="generateImage()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      Generate my Lightspeed
+    </button>
+    <br>
+    <span class="edit-link" onclick="goToStep(1)">← Edit specification</span>
+  </div>
+</div>
+
+<!-- SCREEN 4: RESULT -->
+<div id="screen-result" class="screen">
+  <div class="result-layout">
+    <!-- IMAGE PANE -->
+    <div class="result-image-pane">
+      <div class="result-loading" id="result-loading">
+        <div class="spinner"></div>
+        <div class="loading-label">Rendering your Lightspeed</div>
+        <div class="loading-sub">This takes 15–30 seconds</div>
+      </div>
+      <img id="result-img" src="" alt="Your Langen Lightspeed" style="display:none">
+    </div>
+
+    <!-- RESULT PANEL -->
+    <div class="result-panel">
+      <div class="result-eyebrow">Your Lightspeed</div>
+      <h2 class="result-title" id="result-title">Loading...</h2>
+
+      <div class="result-spec">
+        <div class="result-spec-title">Your specification</div>
+        <div class="result-spec-row"><span class="result-spec-key">Customer</span><span class="result-spec-val" id="r-name">—</span></div>
+        <div class="result-spec-row"><span class="result-spec-key">Bodywork</span><span class="result-spec-val" id="r-bodywork">—</span></div>
+        <div class="result-spec-row"><span class="result-spec-key">Chassis</span><span class="result-spec-val" id="r-chassis">—</span></div>
+        <div class="result-spec-row"><span class="result-spec-key">Wheels</span><span class="result-spec-val" id="r-wheels">—</span></div>
+        <div class="result-spec-row"><span class="result-spec-key">Model</span><span class="result-spec-val">Lightspeed · 185hp · 185kg</span></div>
+        <div class="result-spec-row"><span class="result-spec-key">Edition</span><span class="result-spec-val">185 units worldwide</span></div>
+      </div>
+
+      <div class="error-msg" id="error-msg"></div>
+
+      <div class="result-actions" id="result-actions" style="display:none">
+        <a class="action-btn primary" id="btn-enquire" href="#">
+          <div class="action-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <span class="action-label">Enquire with this specification</span>
+        </a>
+        <button class="action-btn secondary" id="btn-download" onclick="downloadResult()">
+          <div class="action-icon"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+          <span class="action-label">Download image</span>
+          <span class="action-sub">PNG</span>
+        </button>
+        <div>
+          <div style="font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--w55);margin-bottom:10px">Share</div>
+          <div class="share-row">
+            <a class="share-pill" id="share-twitter" href="#" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+              X / Twitter
+            </a>
+            <a class="share-pill" id="share-instagram" href="#" onclick="copyForInstagram()">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+              Instagram
+            </a>
+            <a class="share-pill" id="share-linkedin" href="#" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center;padding-top:16px;border-top:1px solid var(--b)">
+        <div class="result-restart" onclick="restartConfig()">Start a new configuration</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── STATE ──
+const state = {
+  name: '', email: '',
+  bodywork: '', chassis: '', wheelType: '', wheelColour: '',
+  currentStep: 1,
+  resultImageData: null
+};
+
+function getWheelSpec() {
+  if(!state.wheelType) return 'Not selected';
+  if(!state.wheelColour) return state.wheelType;
+  return `${state.wheelType} · ${state.wheelColour}`;
+}
+
+// ── GATE ──
+function startConfig() {
+  const name = document.getElementById('gate-name').value.trim();
+  const email = document.getElementById('gate-email').value.trim();
+  if(!name){ alert('Please enter your first name.'); return; }
+  if(!email || !email.includes('@')){ alert('Please enter a valid email address.'); return; }
+  state.name = name;
+  state.email = email;
+  document.getElementById('s-name').textContent = name;
+  showScreen('screen-config');
+}
+
+// ── SCREEN NAV ──
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+// ── STEP NAV ──
+function goToStep(n) {
+  document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(`step-${n}`).classList.add('active');
+  state.currentStep = n;
+  updatePills();
+  updateStepNav();
+  document.getElementById('step-hint').textContent = `Step ${n} of 3`;
+  if(n === 3 && state.wheelType) {
+    document.getElementById('wheel-colour-section').style.display = 'block';
+  }
+  window.scrollTo(0,0);
+}
+
+function nextStep() {
+  if(state.currentStep === 1) {
+    if(!state.bodywork){ alert('Please choose a bodywork colour to continue.'); return; }
+    goToStep(2);
+  } else if(state.currentStep === 2) {
+    if(!state.chassis){ alert('Please choose a chassis finish to continue.'); return; }
+    goToStep(3);
+  } else if(state.currentStep === 3) {
+    if(!state.wheelType){ alert('Please choose a wheel type to continue.'); return; }
+    showGenerateScreen();
+  }
+}
+
+function prevStep() {
+  if(state.currentStep > 1) goToStep(state.currentStep - 1);
+}
+
+function updatePills() {
+  for(let i=1;i<=3;i++) {
+    const pill = document.getElementById(`pill-${i}`);
+    pill.className = 'step-pill';
+    if(i < state.currentStep) pill.classList.add('done');
+    else if(i === state.currentStep) pill.classList.add('active');
+  }
+}
+
+function updateStepNav() {
+  const back = document.getElementById('btn-back');
+  const next = document.getElementById('btn-next');
+  back.style.display = state.currentStep > 1 ? 'block' : 'none';
+  next.textContent = state.currentStep === 3 ? 'Review & generate →' : 'Next step →';
+}
+
+// ── SWATCH SELECTION ──
+function selectSwatch(type, value, el) {
+  const container = el.closest('.swatch-grid') || el.parentElement;
+  container.querySelectorAll('.swatch').forEach(s => s.classList.remove('selected'));
+  el.classList.add('selected');
+  if(type === 'bodywork') {
+    state.bodywork = value;
+    document.getElementById('s-bodywork').textContent = value;
+    document.getElementById('bodywork-bespoke').value = '';
+    updatePreview();
+  } else if(type === 'chassis') {
+    state.chassis = value;
+    document.getElementById('s-chassis').textContent = value;
+    document.getElementById('chassis-bespoke').value = '';
+    updatePreview();
+  } else if(type === 'wheel-colour') {
+    state.wheelColour = value;
+    document.getElementById('s-wheels').textContent = getWheelSpec();
+    updatePreview();
+  }
+}
+
+function selectWheelType(type, el) {
+  document.querySelectorAll('.wheel-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  state.wheelType = type;
+  state.wheelColour = '';
+  document.getElementById('wheel-colour-section').style.display = 'block';
+  document.getElementById('wheel-swatches').querySelectorAll('.swatch').forEach(s => s.classList.remove('selected'));
+  document.getElementById('s-wheels').textContent = type;
+  updatePreview();
+}
+
+function setBespoke(type) {
+  const val = document.getElementById(`${type}-bespoke`).value.trim();
+  if(!val) return;
+  document.querySelectorAll(`#${type === 'bodywork' ? 'bodywork' : 'chassis'}-swatches .swatch`).forEach(s => s.classList.remove('selected'));
+  if(type === 'bodywork') {
+    state.bodywork = val;
+    document.getElementById('s-bodywork').textContent = val;
+  } else {
+    state.chassis = val;
+    document.getElementById('s-chassis').textContent = val;
+  }
+  updatePreview();
+}
+
+function updatePreview() {
+  if(state.bodywork) {
+    document.getElementById('preview-spec-1').textContent = `Bodywork: ${state.bodywork}`;
+    document.getElementById('preview-spec-1').style.opacity = '1';
+  }
+  if(state.chassis) {
+    document.getElementById('preview-spec-2').textContent = `Chassis: ${state.chassis}`;
+    document.getElementById('preview-spec-2').style.opacity = '1';
+  }
+  if(state.wheelType) {
+    document.getElementById('preview-spec-3').textContent = `Wheels: ${getWheelSpec()}`;
+    document.getElementById('preview-spec-3').style.opacity = '1';
+  }
+}
+
+// ── GENERATE SCREEN ──
+function showGenerateScreen() {
+  const wheelSpec = getWheelSpec();
+  document.getElementById('gs-bodywork').textContent = state.bodywork;
+  document.getElementById('gs-chassis').textContent = state.chassis;
+  document.getElementById('gs-wheels').textContent = wheelSpec;
+
+  const prompt = buildPrompt();
+  document.getElementById('generate-prompt-preview').textContent = prompt;
+  showScreen('screen-generate');
+}
+
+function buildPrompt() {
+  const wheel = getWheelSpec();
+  return `A stunning studio photograph of the Langen Lightspeed motorcycle with the following specification: ${state.bodywork} carbon fibre bodywork with a premium finish, ${state.chassis} chassis and swingarm, and ${wheel} wheels. The motorcycle should be shown in a dramatic three-quarter front angle on a dark background. Photorealistic, premium automotive photography quality. Keep all mechanical details accurate to the Langen Lightspeed — the distinctive trellis frame, compact proportions, and high-performance British motorcycle aesthetic.`;
+}
+
+// ── IMAGE GENERATION ──
+async function generateImage() {
+  showScreen('screen-result');
+  document.getElementById('result-loading').classList.remove('hide');
+  document.getElementById('result-img').style.display = 'none';
+  document.getElementById('result-actions').style.display = 'none';
+  document.getElementById('error-msg').classList.remove('show');
+
+  const wheelSpec = getWheelSpec();
+  document.getElementById('result-title').textContent = state.name + "\u2019s Lightspeed";
+  document.getElementById('r-name').textContent = state.name;
+  document.getElementById('r-bodywork').textContent = state.bodywork;
+  document.getElementById('r-chassis').textContent = state.chassis;
+  document.getElementById('r-wheels').textContent = wheelSpec;
+
+  const prompt = buildPrompt();
+
+  try {
+    const response = await fetch('/api/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt })
+    });
+    if(!response.ok) {
+      const err = await response.json().catch(function(){ return {}; });
+      throw new Error(err.error || 'Server error ' + response.status);
+    }
+    const data = await response.json();
+    if(!data.imageData) throw new Error('No image returned. Please try again.');
+    const imageDataUrl = 'data:' + (data.mimeType || 'image/png') + ';base64,' + data.imageData;
+    state.resultImageData = imageDataUrl;
+    document.getElementById('result-img').src = imageDataUrl;
+    document.getElementById('result-img').style.display = 'block';
+    document.getElementById('result-loading').classList.add('hide');
+    document.getElementById('result-actions').style.display = 'flex';
+    document.getElementById('result-actions').style.flexDirection = 'column';
+    setupEnquireLink();
+    setupShareLinks();
+  } catch(err) {
+    document.getElementById('result-loading').classList.add('hide');
+    const errorEl = document.getElementById('error-msg');
+    errorEl.textContent = 'Generation failed: ' + err.message;
+    errorEl.classList.add('show');
+    document.getElementById('result-actions').style.display = 'flex';
+    document.getElementById('result-actions').style.flexDirection = 'column';
+    setupEnquireLink();
+  }
+}
+
+// ── ENQUIRE LINK ──
+function setupEnquireLink() {
+  const wheelSpec = getWheelSpec();
+  const subject = encodeURIComponent(`Lightspeed Configuration — ${state.name}`);
+  const body = encodeURIComponent(
+`Dear Langen team,
+
+I have configured my Lightspeed and would like to enquire about reserving a build slot.
+
+My specification:
+  Name: ${state.name}
+  Email: ${state.email}
+  
+  Bodywork colour: ${state.bodywork}
+  Chassis & swingarm: ${state.chassis}
+  Wheels: ${wheelSpec}
+
+Please contact me to discuss availability, timeline and next steps.
+
+Kind regards,
+${state.name}`
+  );
+  document.getElementById('btn-enquire').href = `mailto:info@langenmotorcycles.co.uk?subject=${subject}&body=${body}`;
+}
+
+// ── DOWNLOAD ──
+function downloadResult() {
+  if(!state.resultImageData) return;
+  const a = document.createElement('a');
+  a.href = state.resultImageData;
+  a.download = `langen-lightspeed-${state.name.toLowerCase().replace(/\s+/g,'-')}-config.png`;
+  a.click();
+}
+
+// ── SHARE ──
+function setupShareLinks() {
+  const text = encodeURIComponent(`My Langen Lightspeed configuration — ${state.bodywork} bodywork, ${state.chassis} chassis, ${getWheelSpec()} wheels. One of 185. @langenmotorcycles`);
+  const url = encodeURIComponent('https://langen44.github.io/langen-website/configurator.html');
+  document.getElementById('share-twitter').href = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
+  document.getElementById('share-linkedin').href = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+}
+
+function copyForInstagram() {
+  const text = `My Langen Lightspeed — ${state.bodywork} bodywork · ${state.chassis} chassis · ${getWheelSpec()} wheels. One of 185 in the world. Built to order in Wigan, England. @langenmotorcycles #LangenMotorcycles #Lightspeed`;
+  navigator.clipboard.writeText(text).then(() => {
+    alert('Caption copied to clipboard — paste it into your Instagram post after sharing the downloaded image.');
+  });
+}
+
+// ── RESTART ──
+function restartConfig() {
+  state.bodywork='';state.chassis='';state.wheelType='';state.wheelColour='';
+  state.currentStep=1;state.resultImageData=null;
+  document.querySelectorAll('.swatch').forEach(s=>s.classList.remove('selected'));
+  document.querySelectorAll('.wheel-option').forEach(o=>o.classList.remove('selected'));
+  document.getElementById('wheel-colour-section').style.display='none';
+  document.getElementById('s-bodywork').textContent='Not selected';
+  document.getElementById('s-chassis').textContent='Not selected';
+  document.getElementById('s-wheels').textContent='Not selected';
+  goToStep(1);
+  showScreen('screen-config');
+}
+
+// ── ENTER KEY ON GATE ──
+document.addEventListener('keydown', e => {
+  if(e.key==='Enter' && document.getElementById('screen-gate').classList.contains('active')) startConfig();
+});
+</script>
+</body>
+</html>
