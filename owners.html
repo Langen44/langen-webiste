@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Owner Bikes — Langen Motorcycles</title>
+<meta name="description" content="Langens in the wild. A gallery of customer motorcycles — each one unique, each one built for its rider.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --black:#080807;--bg:#0c0b0a;--bg2:#111010;--bg3:#191715;
+  --gold:#c9a962;--gold2:#e2c47a;--gold-dim:rgba(201,169,98,.12);
+  --w:#f5f4f2;--w90:rgba(245,244,242,.9);--w75:rgba(245,244,242,.75);
+  --w55:rgba(245,244,242,.55);--w30:rgba(245,244,242,.3);--w12:rgba(245,244,242,.12);
+  --b:rgba(201,169,98,.15);--b2:rgba(201,169,98,.32);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--w);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:16px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 56px;height:72px;background:rgba(8,8,7,.82);backdrop-filter:blur(24px);border-bottom:1px solid var(--b);transition:background .4s}
+.nav-logo img{height:28px;opacity:.95}
+.nav-links{display:flex;align-items:center;gap:40px}
+.nav-links a{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--w55);text-decoration:none;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--gold)}
+.nav-cta{border:1px solid var(--b2);color:var(--gold);padding:10px 26px;border-radius:2px;font-size:10px;letter-spacing:3px;text-transform:uppercase;text-decoration:none;transition:all .25s;font-family:'DM Sans',sans-serif}
+.nav-cta:hover{background:var(--gold);color:var(--black);border-color:var(--gold)}
+
+/* HERO — text only, no image */
+.hero{padding:160px 80px 80px;border-bottom:1px solid var(--b)}
+.hero-eyebrow{font-size:10px;letter-spacing:6px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:14px}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold)}
+.hero-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(52px,6vw,88px);font-weight:300;line-height:.95;letter-spacing:-2px;color:var(--w);margin-bottom:28px}
+.hero-title em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:18px;color:var(--w75);font-weight:300;line-height:1.75;max-width:560px}
+
+/* FILTER BAR */
+.filter-bar{padding:32px 80px;background:var(--bg2);border-bottom:1px solid var(--b);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.filter-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--w55);margin-right:8px}
+.fbtn{background:transparent;border:1px solid var(--b);color:var(--w55);padding:8px 20px;border-radius:2px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
+.fbtn:hover,.fbtn.active{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
+
+/* MASONRY-STYLE GALLERY */
+.gallery-section{padding:64px 80px 100px}
+.gallery-count{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--w55);margin-bottom:40px}
+.gallery-count span{color:var(--gold)}
+
+/* Grid — alternating sizes for visual interest */
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:var(--b);
+  border:1px solid var(--b);
+  border-radius:3px;
+  overflow:hidden;
+}
+.gallery-card{position:relative;overflow:hidden;background:var(--bg2);cursor:pointer}
+.gallery-card.wide{grid-column:span 2}
+.gallery-card.tall{grid-row:span 2}
+.gallery-card img{width:100%;height:100%;object-fit:cover;transition:transform 6s cubic-bezier(.16,1,.3,1);display:block;min-height:260px}
+.gallery-card.tall img{min-height:540px}
+.gallery-card.wide img{min-height:300px}
+.gallery-card:hover img{transform:scale(1.05)}
+.gallery-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,7,.92) 0%,rgba(8,8,7,.3) 50%,transparent 100%);opacity:0;transition:opacity .4s}
+.gallery-card:hover .gallery-overlay{opacity:1}
+.gallery-info{position:absolute;bottom:0;left:0;right:0;padding:24px 28px;transform:translateY(8px);opacity:0;transition:all .4s}
+.gallery-card:hover .gallery-info{transform:none;opacity:1}
+.gallery-owner{font-size:16px;font-weight:400;color:var(--w);margin-bottom:4px}
+.gallery-spec{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+.gallery-model-tag{position:absolute;top:16px;left:16px;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;background:rgba(8,8,7,.75);color:var(--gold);padding:5px 12px;border-radius:2px;border:1px solid var(--b2);backdrop-filter:blur(8px)}
+
+/* SUBMIT SECTION */
+.submit-section{background:var(--bg2);border-top:1px solid var(--b);padding:100px 80px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.submit-content{}
+.sec-lbl{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:14px}
+.sec-lbl::before{content:'';width:24px;height:1px;background:var(--gold)}
+.sec-h{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(40px,4vw,58px);font-weight:300;line-height:1.05;letter-spacing:-1px;color:var(--w);margin-bottom:24px}
+.sec-h em{font-style:italic;color:var(--gold)}
+
+/* UPLOAD FORM */
+.upload-form{background:var(--bg);border:1px solid var(--b);border-radius:3px;padding:48px}
+.form-title{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--b)}
+.form-group{margin-bottom:18px}
+.form-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--w55);display:block;margin-bottom:8px}
+.form-input{width:100%;background:var(--bg2);border:1px solid var(--b);color:var(--w90);padding:13px 16px;border-radius:2px;font-size:14px;font-family:'DM Sans',sans-serif;transition:border-color .2s;outline:none}
+.form-input:focus{border-color:var(--gold)}
+.form-input::placeholder{color:var(--w30)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.upload-zone{border:1px dashed var(--b2);border-radius:3px;padding:36px 24px;text-align:center;cursor:pointer;transition:all .3s;background:var(--bg3);margin-bottom:18px}
+.upload-zone:hover,.upload-zone.drag-over{border-color:var(--gold);background:var(--gold-dim)}
+.upload-zone input{display:none}
+.upload-icon{font-size:28px;opacity:.35;margin-bottom:12px}
+.upload-title{font-size:14px;color:var(--w75);margin-bottom:4px}
+.upload-sub{font-size:12px;color:var(--w55)}
+.upload-preview{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.preview-img{width:72px;height:72px;border-radius:2px;object-fit:cover;border:1px solid var(--b2)}
+.form-submit{width:100%;background:var(--gold);color:var(--black);border:none;padding:16px;border-radius:2px;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:500;cursor:pointer;transition:all .3s;font-family:'DM Sans',sans-serif}
+.form-submit:hover{background:var(--gold2);transform:translateY(-1px);box-shadow:0 8px 24px rgba(201,169,98,.25)}
+.form-note{font-size:12px;color:var(--w55);text-align:center;margin-top:12px;line-height:1.6}
+
+/* SUCCESS STATE */
+.success-msg{display:none;text-align:center;padding:32px;border:1px solid rgba(76,175,80,.3);background:rgba(76,175,80,.08);border-radius:3px;margin-top:16px}
+.success-msg.show{display:block}
+.success-msg h4{font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-weight:300;color:var(--w);margin-bottom:8px}
+.success-msg p{font-size:14px;color:var(--w55);line-height:1.6}
+
+/* FOOTER */
+footer{background:var(--bg);border-top:1px solid var(--b);padding:48px 80px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+footer img{height:24px;opacity:.8}
+.foot-copy{font-size:11px;color:var(--w55)}
+.foot-links{display:flex;gap:28px}
+.foot-links a{font-size:11px;color:var(--w55);text-decoration:none;letter-spacing:1.5px;text-transform:uppercase;transition:color .2s}
+.foot-links a:hover{color:var(--gold)}
+
+/* REVEAL */
+.rev{opacity:0;transform:translateY(22px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1)}
+.rev.in{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+/* RESPONSIVE */
+@media(max-width:1024px){nav,.hero,.filter-bar,.gallery-section,.submit-section,footer{padding-left:32px;padding-right:32px}.nav-links{display:none}}
+@media(max-width:860px){.gallery-grid{grid-template-columns:1fr}.gallery-card.wide,.gallery-card.tall{grid-column:span 1;grid-row:span 1}.submit-section{grid-template-columns:1fr;gap:48px}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><a href="index.html"><img src="Langen-Motorcycles-Logo-White.png" alt="Langen Motorcycles"></a></div>
+  <div class="nav-links">
+    <a href="lightspeed.html">Lightspeed</a>
+    <a href="#">Two Stroke</a>
+    <a href="cpo.html">Pre-Owned</a>
+    <a href="owners.html" class="active">Owner Bikes</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </div>
+  <a href="lightspeed.html#reserve" class="nav-cta">Reserve yours</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow rev">Langen owners</div>
+  <h1 class="hero-title rev d1">Every one<br><em>different.</em></h1>
+  <p class="hero-sub rev d2">No two Langens leave Wigan the same. This is a gallery of customer motorcycles — each specified for its rider, each with its own story. Submit yours below to be featured.</p>
+</div>
+
+<!-- FILTER -->
+<div class="filter-bar">
+  <span class="filter-label">Filter</span>
+  <button class="fbtn active" onclick="filterGallery('all',this)">All bikes</button>
+  <button class="fbtn" onclick="filterGallery('lightspeed',this)">Lightspeed</button>
+  <button class="fbtn" onclick="filterGallery('two-stroke',this)">Two Stroke</button>
+</div>
+
+<!-- GALLERY -->
+<div class="gallery-section">
+  <div class="gallery-count rev">Showing <span id="bike-count">6</span> owner motorcycles</div>
+
+  <div class="gallery-grid" id="gallery">
+
+    <!-- Feature card — wide -->
+    <div class="gallery-card wide rev" data-model="lightspeed">
+      <img src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/691326617b56547773e30dfd_LangenLightspeed-015%201_warm.avif" alt="Lightspeed owner bike">
+      <div class="gallery-model-tag">Lightspeed</div>
+      <div class="gallery-overlay"></div>
+      <div class="gallery-info">
+        <div class="gallery-owner">Lightspeed #001 — First delivery</div>
+        <div class="gallery-spec">Titanium · Spoked wheels · UK spec</div>
+      </div>
+    </div>
+
+    <!-- Tall card -->
+    <div class="gallery-card tall rev d1" data-model="two-stroke">
+      <img src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/658450ae4067358ec7fddf0c_DSC05092-Enhanced-NR2.jpg" alt="Two Stroke owner bike">
+      <div class="gallery-model-tag">Two Stroke</div>
+      <div class="gallery-overlay"></div>
+      <div class="gallery-info">
+        <div class="gallery-owner">Two Stroke #042</div>
+        <div class="gallery-spec">Midnight Black · Standard wheels</div>
+      </div>
+    </div>
+
+    <!-- Standard cards -->
+    <div class="gallery-card rev d1" data-model="two-stroke">
+      <img src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/658407ff8fe7ad63d26ba66f_twostroke-homepage.jpg" alt="Two Stroke owner bike">
+      <div class="gallery-model-tag">Two Stroke</div>
+      <div class="gallery-overlay"></div>
+      <div class="gallery-info">
+        <div class="gallery-owner">Two Stroke #018</div>
+        <div class="gallery-spec">Bespoke orange · UK spec</div>
+      </div>
+    </div>
+
+    <div class="gallery-card rev d2" data-model="lightspeed">
+      <img src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/691359e42d5943ef0aed816d_lightspeed-homepage-2025.avif" alt="Lightspeed detail">
+      <div class="gallery-model-tag">Lightspeed</div>
+      <div class="gallery-overlay"></div>
+      <div class="gallery-info">
+        <div class="gallery-owner">Lightspeed #002</div>
+        <div class="gallery-spec">Stealth black · CNC wheels</div>
+      </div>
+    </div>
+
+    <div class="gallery-card rev" data-model="two-stroke">
+      <img src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/658450ae4067358ec7fddf0c_DSC05092-Enhanced-NR2.jpg" alt="Two Stroke owner bike">
+      <div class="gallery-model-tag">Two Stroke</div>
+      <div class="gallery-overlay"></div>
+      <div class="gallery-info">
+        <div class="gallery-owner">Two Stroke #061</div>
+        <div class="gallery-spec">Carbon raw · Spoked wheels</div>
+      </div>
+    </div>
+
+    <div class="gallery-card rev d1" data-model="lightspeed">
+      <img src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/691326617b56547773e30dfd_LangenLightspeed-015%201_warm.avif" alt="Lightspeed owner bike">
+      <div class="gallery-model-tag">Lightspeed</div>
+      <div class="gallery-overlay"></div>
+      <div class="gallery-info">
+        <div class="gallery-owner">Lightspeed #004</div>
+        <div class="gallery-spec">Warm silver · Spoked wheels</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SUBMIT YOUR BIKE -->
+<div class="submit-section">
+  <div>
+    <div class="sec-lbl rev">Be featured</div>
+    <h2 class="sec-h rev d1">Submit<br><em>your bike</em></h2>
+    <p style="font-size:17px;color:var(--w75);line-height:1.85;font-weight:300;margin-bottom:36px" class="rev d2">If you own a Langen, we'd love to feature it here. Submit a few photos, tell us a little about your specification and your experience — and we'll add it to the gallery.</p>
+    <div style="display:flex;flex-direction:column;gap:14px" class="rev d3">
+      <div style="display:flex;gap:14px;align-items:center;padding:16px 20px;background:var(--bg2);border:1px solid var(--b);border-radius:3px">
+        <div style="width:36px;height:36px;border:1px solid var(--b2);border-radius:2px;display:flex;align-items:center;justify-content:center;background:var(--gold-dim);flex-shrink:0">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        </div>
+        <div><div style="font-size:13px;color:var(--w90);margin-bottom:3px">High resolution photos</div><div style="font-size:12px;color:var(--w55)">At least 3 images, minimum 2000px wide</div></div>
+      </div>
+      <div style="display:flex;gap:14px;align-items:center;padding:16px 20px;background:var(--bg2);border:1px solid var(--b);border-radius:3px">
+        <div style="width:36px;height:36px;border:1px solid var(--b2);border-radius:2px;display:flex;align-items:center;justify-content:center;background:var(--gold-dim);flex-shrink:0">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </div>
+        <div><div style="font-size:13px;color:var(--w90);margin-bottom:3px">Brief specification</div><div style="font-size:12px;color:var(--w55)">Build number, colour, wheels, any custom details</div></div>
+      </div>
+      <div style="display:flex;gap:14px;align-items:center;padding:16px 20px;background:var(--bg2);border:1px solid var(--b);border-radius:3px">
+        <div style="width:36px;height:36px;border:1px solid var(--b2);border-radius:2px;display:flex;align-items:center;justify-content:center;background:var(--gold-dim);flex-shrink:0">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <div><div style="font-size:13px;color:var(--w90);margin-bottom:3px">Your story (optional)</div><div style="font-size:12px;color:var(--w55)">What made you choose your specification? How does it ride?</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="upload-form rev">
+    <div class="form-title">Submit your Langen</div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Your name</label><input type="text" id="owner-name" class="form-input" placeholder="First name is fine"></div>
+      <div class="form-group"><label class="form-label">Email</label><input type="email" id="owner-email" class="form-input" placeholder="your@email.com"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Model</label>
+        <select id="owner-model" class="form-input">
+          <option value="">Select</option>
+          <option>Lightspeed</option>
+          <option>Two Stroke</option>
+        </select>
+      </div>
+      <div class="form-group"><label class="form-label">Build number</label><input type="text" id="owner-build" class="form-input" placeholder="#042"></div>
+    </div>
+    <div class="form-group"><label class="form-label">Specification &amp; story</label><textarea id="owner-notes" class="form-input" style="min-height:90px;resize:vertical" placeholder="Colour, wheels, any custom details, how it rides..."></textarea></div>
+
+    <div class="upload-zone" onclick="document.getElementById('photo-upload').click()" ondragover="this.classList.add('drag-over');event.preventDefault()" ondragleave="this.classList.remove('drag-over')" ondrop="handleDrop(event)">
+      <input type="file" id="photo-upload" accept="image/*" multiple onchange="handleFiles(this.files)">
+      <div class="upload-icon">⬆</div>
+      <div class="upload-title">Drop photos here or click to browse</div>
+      <div class="upload-sub">JPG or PNG · Max 10MB each · Min 2000px wide</div>
+      <div class="upload-preview" id="preview-container"></div>
+    </div>
+
+    <button class="form-submit" onclick="submitOwnerForm()">Submit for review</button>
+    <p class="form-note">We review all submissions before publishing. Usually within 3–5 days.</p>
+
+    <div class="success-msg" id="success-msg">
+      <h4>Submission received</h4>
+      <p>Thank you — we'll review your photos and be in touch within a few days.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+    <img src="Langen-Motorcycles-Logo-White.png" alt="Langen Motorcycles">
+    <span class="foot-copy">© 2025 Langen Technology Ltd · Registered in England & Wales 11601010</span>
+  </div>
+  <div class="foot-links">
+    <a href="index.html">Home</a><a href="lightspeed.html">Lightspeed</a>
+    <a href="cpo.html">Pre-Owned</a><a href="#">Contact</a><a href="#">Privacy</a>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');obs.unobserve(x.target)}}),{threshold:.08,rootMargin:'0px 0px -24px 0px'});
+document.querySelectorAll('.rev').forEach(el=>obs.observe(el));
+const nav=document.querySelector('nav');
+window.addEventListener('scroll',()=>{nav.style.background=window.scrollY>80?'rgba(8,8,7,.97)':'rgba(8,8,7,.82)';},{passive:true});
+
+function filterGallery(model, btn) {
+  document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const cards = document.querySelectorAll('.gallery-card[data-model]');
+  let count = 0;
+  cards.forEach(card=>{
+    const show = model==='all' || card.dataset.model===model;
+    card.style.display = show ? 'block' : 'none';
+    if(show) count++;
+  });
+  document.getElementById('bike-count').textContent = count;
+}
+
+function handleFiles(files) {
+  const container = document.getElementById('preview-container');
+  Array.from(files).forEach(file=>{
+    const reader = new FileReader();
+    reader.onload = e=>{
+      const img = document.createElement('img');
+      img.src = e.target.result;
+      img.className = 'preview-img';
+      container.appendChild(img);
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function handleDrop(e) {
+  e.preventDefault();
+  document.querySelector('.upload-zone').classList.remove('drag-over');
+  handleFiles(e.dataTransfer.files);
+}
+
+function submitOwnerForm() {
+  const name = document.getElementById('owner-name').value;
+  const email = document.getElementById('owner-email').value;
+  const model = document.getElementById('owner-model').value;
+  const build = document.getElementById('owner-build').value;
+  const notes = document.getElementById('owner-notes').value;
+  if(!name||!email||!model){alert('Please fill in your name, email and model.');return;}
+  const subject = encodeURIComponent(`Owner Gallery Submission — ${model} ${build}`);
+  const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nModel: ${model}\nBuild number: ${build}\n\nSpec & story:\n${notes}\n\n[Photos to follow separately — please reply to this email for upload instructions]`);
+  window.location.href = `mailto:info@langenmotorcycles.co.uk?subject=${subject}&body=${body}`;
+  setTimeout(()=>{document.getElementById('success-msg').classList.add('show');},500);
+}
+</script>
+</body>
+</html>
