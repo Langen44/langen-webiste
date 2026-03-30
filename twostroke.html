@@ -112,6 +112,25 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .spec-k{font-size:13px;color:var(--w55);font-weight:300;flex-shrink:0}
 .spec-v{font-size:14px;color:var(--w90);font-weight:400;text-align:right}
 
+/* GALLERY */
+.gallery-sec{padding:120px 84px;background:var(--bg)}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:48px}
+.gallery-grid a{display:block;aspect-ratio:4/3;overflow:hidden;border-radius:2px;cursor:pointer;position:relative}
+.gallery-grid a.tall{grid-row:span 2;aspect-ratio:auto}
+.gallery-grid a img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.16,1,.3,1),filter .4s;filter:brightness(.88)}
+.gallery-grid a:hover img{transform:scale(1.04);filter:brightness(1)}
+.gallery-grid a::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,7,.25),transparent 40%);pointer-events:none;transition:opacity .3s}
+.gallery-grid a:hover::after{opacity:0}
+.lightbox{display:none;position:fixed;inset:0;z-index:999;background:rgba(8,8,7,.96);align-items:center;justify-content:center;padding:40px;backdrop-filter:blur(12px)}
+.lightbox.open{display:flex}
+.lightbox img{max-width:90vw;max-height:85vh;object-fit:contain;border-radius:3px}
+.lightbox-close{position:absolute;top:28px;right:36px;font-size:28px;color:var(--w55);cursor:pointer;width:48px;height:48px;display:flex;align-items:center;justify-content:center;border:1px solid var(--b);border-radius:2px;transition:all .2s;background:transparent;font-family:'DM Sans',sans-serif}
+.lightbox-close:hover{color:var(--w);border-color:var(--w55)}
+.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);font-size:24px;color:var(--w55);cursor:pointer;width:52px;height:52px;display:flex;align-items:center;justify-content:center;border:1px solid var(--b);border-radius:2px;transition:all .2s;background:rgba(8,8,7,.6);font-family:'DM Sans',sans-serif}
+.lightbox-nav:hover{color:var(--w);border-color:var(--w55)}
+.lightbox-prev{left:24px}
+.lightbox-next{right:24px}
+
 /* PRESS */
 .press-sec{padding:120px 84px}
 .press-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--b);border:1px solid var(--b);border-radius:3px;overflow:hidden;margin-top:40px}
@@ -180,6 +199,10 @@ footer{background:var(--bg);border-top:1px solid var(--b);padding:52px 84px;disp
   .del-item:last-child{border-bottom:none}
   .hero-scroll{display:none}
 }
+@media(max-width:860px){
+  .gallery-grid{grid-template-columns:repeat(2,1fr);gap:4px}
+  .gallery-grid a.tall{grid-row:span 1;aspect-ratio:4/3}
+}
 </style>
 </head>
 <body>
@@ -194,6 +217,7 @@ footer{background:var(--bg);border-top:1px solid var(--b);padding:52px 84px;disp
   <div class="nav-links">
     <a href="#performance">Performance</a>
     <a href="#chassis">Chassis</a>
+    <a href="#gallery">Gallery</a>
     <a href="#heritage">Heritage</a>
     <a href="#specification">Specification</a>
     <a href="#reserve">Pre-owned</a>
@@ -343,6 +367,30 @@ footer{background:var(--bg);border-top:1px solid var(--b);padding:52px 84px;disp
   </div>
 </div>
 
+<!-- GALLERY -->
+<div class="gallery-sec" id="gallery">
+  <div class="sec-lbl rev">Gallery</div>
+  <h2 class="sec-h rev">Craftsmanship<br><em>in detail</em></h2>
+  <div class="gallery-grid">
+    <a class="gal-link rev" data-i="0"><img src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/68835e4676d1b91945b01862_DSC_7073.jpg" alt="Langen Two Stroke studio profile" loading="lazy"></a>
+    <a class="gal-link rev d1" data-i="1"><img src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/621893859b16ef220b72bd1a_shox-detail.jpg" alt="Two Stroke Ktech suspension detail" loading="lazy"></a>
+    <a class="gal-link rev d2" data-i="2"><img src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/68835e37294857bccff01684_Image%205%20-%20Langen.jpg" alt="Two Stroke carbon tank detail" loading="lazy"></a>
+    <a class="gal-link rev" data-i="3"><img src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/68835e6fd0815781acccae3b_RKP_Langen_Two_Stroke_056%20COMP.jpg" alt="Two Stroke rear three-quarter" loading="lazy"></a>
+    <a class="gal-link tall rev d1" data-i="4"><img src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/621777f6cf2b0440cfe76c4a_centre%20spread%20copy.jpg" alt="Langen Two Stroke centrespread" loading="lazy"></a>
+    <a class="gal-link rev d2" data-i="5"><img src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/68835e820bc7f56928ffeaac_RKP_Langen_Two_Stroke_050%20COMP.jpg" alt="Two Stroke at Silverstone" loading="lazy"></a>
+    <a class="gal-link rev" data-i="6"><img src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/658407ff8fe7ad63d26ba66f_twostroke-homepage.jpg" alt="Langen Two Stroke profile" loading="lazy"></a>
+    <a class="gal-link rev d1" data-i="7"><img src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/68835f25875a3beec8b3f971_IMG-20250526-WA0009.jpg" alt="Two Stroke owner bike" loading="lazy"></a>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lb-close">×</button>
+  <button class="lightbox-nav lightbox-prev" id="lb-prev">‹</button>
+  <button class="lightbox-nav lightbox-next" id="lb-next">›</button>
+  <img id="lb-img" src="" alt="">
+</div>
+
 <!-- PRESS -->
 <div class="press-sec">
   <div class="sec-lbl rev">Critical acclaim</div>
@@ -428,6 +476,20 @@ document.querySelectorAll('.rev').forEach(el=>obs.observe(el));
 
 const nav = document.querySelector('nav');
 window.addEventListener('scroll',()=>{nav.style.background=window.scrollY>60?'rgba(8,8,7,.96)':'rgba(8,8,7,.82)'});
+
+// Lightbox
+const lb=document.getElementById('lightbox'),lbImg=document.getElementById('lb-img');
+const galLinks=[...document.querySelectorAll('.gal-link')];
+let currentIdx=0;
+function openLB(i){currentIdx=i;lbImg.src=galLinks[i].querySelector('img').src;lb.classList.add('open');document.body.style.overflow='hidden'}
+function closeLB(){lb.classList.remove('open');document.body.style.overflow=''}
+function navLB(dir){currentIdx=(currentIdx+dir+galLinks.length)%galLinks.length;lbImg.src=galLinks[currentIdx].querySelector('img').src}
+galLinks.forEach((a,i)=>a.addEventListener('click',()=>openLB(i)));
+document.getElementById('lb-close').addEventListener('click',closeLB);
+document.getElementById('lb-prev').addEventListener('click',()=>navLB(-1));
+document.getElementById('lb-next').addEventListener('click',()=>navLB(1));
+lb.addEventListener('click',e=>{if(e.target===lb)closeLB()});
+document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')closeLB();if(e.key==='ArrowLeft')navLB(-1);if(e.key==='ArrowRight')navLB(1)});
 </script>
 </body>
 </html>

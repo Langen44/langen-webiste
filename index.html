@@ -592,13 +592,13 @@ footer{
         <div class="contact-item-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
         <div>
           <div class="contact-item-lbl">Email</div>
-          <a href="/cdn-cgi/l/email-protection#ea83848c85aa868b848d8f8487859e8598899389868f99c48985c49f81" class="contact-item-val"><span class="__cf_email__" data-cfemail="127b7c747d527e737c75777c7f7d667d60716b717e77613c717d3c6779">[email&#160;protected]</span></a>
+          <a href="mailto:chris@langenmotorcycles.co.uk" class="contact-item-val">chris@langenmotorcycles.co.uk</a>
         </div>
       </div>
     </div>
     <div class="contact-cta-block rev">
       <p>Visits are by appointment. We encourage every prospective owner to come and see the motorcycles being built — it changes the conversation entirely.</p>
-      <a href="/cdn-cgi/l/email-protection#ec85828a83ac808d828b8982818398839e8f958f80899fc28f83c29987d39f998e86898f98d1aa8d8f98839e95c9dedcba859f8598c9dedca9829d99859e95" class="btn-p">Arrange a visit</a>
+      <a href="mailto:chris@langenmotorcycles.co.uk?subject=Factory%20Visit" class="btn-p">Arrange a visit</a>
     </div>
   </div>
 </div>
@@ -632,7 +632,7 @@ footer{
     <div>
       <div class="footer-col-title">Contact</div>
       <div class="footer-links">
-        <a href="/cdn-cgi/l/email-protection#2a43444c456a464b444d4f4447455e4558495349464f59044945045f41"><span class="__cf_email__" data-cfemail="cda4a3aba28da1aca3aaa8a3a0a2b9a2bfaeb4aea1a8bee3aea2e3b8a6">[email&#160;protected]</span></a>
+        <a href="mailto:chris@langenmotorcycles.co.uk">chris@langenmotorcycles.co.uk</a>
         <a href="tel:+4401942724059">+44 01942 724 059</a>
         <a href="#">Kingfisher Court, Wigan</a>
         <a href="#">Press portal</a>
@@ -649,9 +649,15 @@ footer{
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // Scroll reveal
 const obs = new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}});
 },{threshold:0.08,rootMargin:'0px 0px -24px 0px'});
-document.query
+document.querySelectorAll('.rev').forEach(el=>obs.observe(el));
+
+const nav = document.querySelector('nav');
+window.addEventListener('scroll',()=>{nav.style.background=window.scrollY>60?'rgba(8,8,7,.96)':'rgba(8,8,7,.82)'});
+</script>
+</body>
+</html>

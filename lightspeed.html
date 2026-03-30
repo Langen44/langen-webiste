@@ -178,6 +178,25 @@ footer{background:var(--bg);border-top:1px solid var(--b);padding:52px 84px;disp
 .foot-links a{font-size:11px;color:var(--w55);text-decoration:none;letter-spacing:1.5px;text-transform:uppercase;transition:color .2s}
 .foot-links a:hover{color:var(--gold)}
 
+/* GALLERY */
+.gallery-sec{padding:120px 84px;background:var(--bg)}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:48px}
+.gallery-grid a{display:block;aspect-ratio:4/3;overflow:hidden;border-radius:2px;cursor:pointer;position:relative}
+.gallery-grid a.tall{grid-row:span 2;aspect-ratio:auto}
+.gallery-grid a img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.16,1,.3,1),filter .4s;filter:brightness(.88)}
+.gallery-grid a:hover img{transform:scale(1.04);filter:brightness(1)}
+.gallery-grid a::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,7,.25),transparent 40%);pointer-events:none;transition:opacity .3s}
+.gallery-grid a:hover::after{opacity:0}
+.lightbox{display:none;position:fixed;inset:0;z-index:999;background:rgba(8,8,7,.96);align-items:center;justify-content:center;padding:40px;backdrop-filter:blur(12px)}
+.lightbox.open{display:flex}
+.lightbox img{max-width:90vw;max-height:85vh;object-fit:contain;border-radius:3px}
+.lightbox-close{position:absolute;top:28px;right:36px;font-size:28px;color:var(--w55);cursor:pointer;width:48px;height:48px;display:flex;align-items:center;justify-content:center;border:1px solid var(--b);border-radius:2px;transition:all .2s;background:transparent;font-family:'DM Sans',sans-serif}
+.lightbox-close:hover{color:var(--w);border-color:var(--w55)}
+.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);font-size:24px;color:var(--w55);cursor:pointer;width:52px;height:52px;display:flex;align-items:center;justify-content:center;border:1px solid var(--b);border-radius:2px;transition:all .2s;background:rgba(8,8,7,.6);font-family:'DM Sans',sans-serif}
+.lightbox-nav:hover{color:var(--w);border-color:var(--w55)}
+.lightbox-prev{left:24px}
+.lightbox-next{right:24px}
+
 /* REVEAL */
 .rev{opacity:0;transform:translateY(28px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1)}
 .rev.in{opacity:1;transform:none}
@@ -203,6 +222,10 @@ footer{background:var(--bg);border-top:1px solid var(--b);padding:52px 84px;disp
   .del-item:last-child{border-bottom:none}
   .hero-scroll{display:none}
 }
+@media(max-width:860px){
+  .gallery-grid{grid-template-columns:repeat(2,1fr);gap:4px}
+  .gallery-grid a.tall{grid-row:span 1;aspect-ratio:4/3}
+}
 </style>
 </head>
 <body>
@@ -218,6 +241,7 @@ footer{background:var(--bg);border-top:1px solid var(--b);padding:52px 84px;disp
     <a href="#performance">Performance</a>
     <a href="#electronics">Electronics</a>
     <a href="#specification">Specification</a>
+    <a href="#gallery">Gallery</a>
     <a href="#configure">Configure</a>
     <a href="#reserve">Reserve</a>
   </div>
@@ -405,6 +429,31 @@ footer{background:var(--bg);border-top:1px solid var(--b);padding:52px 84px;disp
   </div>
 </div>
 
+<!-- GALLERY -->
+<div class="gallery-sec" id="gallery">
+  <div class="sec-lbl rev">Gallery</div>
+  <h2 class="sec-h rev">Engineered to<br><em>be seen</em></h2>
+  <div class="gallery-grid">
+    <a class="gal-link rev" data-i="0"><img src="LangenLightspeed-015 1_warm 1_web-ready_gallery.webp" alt="Langen Lightspeed profile" loading="lazy"></a>
+    <a class="gal-link rev d1" data-i="1"><img src="GunHillStudiosLangenLightspeed-175_web-ready_gallery.webp" alt="Lightspeed cockpit detail" loading="lazy"></a>
+    <a class="gal-link rev d2" data-i="2"><img src="GunHillStudiosLangenLightspeed-218_web-ready_gallery.webp" alt="Lightspeed seat and rear suspension" loading="lazy"></a>
+    <a class="gal-link rev" data-i="3"><img src="GunHillStudiosLangenLightspeed-280_web-ready_gallery.webp" alt="Lightspeed front wheel and brake" loading="lazy"></a>
+    <a class="gal-link tall rev d1" data-i="4"><img src="GunHillStudios2025-11-09 16-27-28 (C,S4)_web-ready_gallery.webp" alt="Lightspeed full studio shot" loading="lazy"></a>
+    <a class="gal-link rev d2" data-i="5"><img src="GunHillStudiosLangenLightspeed-322_web-ready_gallery.webp" alt="Lightspeed engine serial number" loading="lazy"></a>
+    <a class="gal-link rev" data-i="6"><img src="GunHillStudiosLangenLightspeed-271_web-ready_gallery.webp" alt="Lightspeed trellis frame detail" loading="lazy"></a>
+    <a class="gal-link rev d1" data-i="7"><img src="GunHillStudiosLangenLightspeed-274_web-ready_gallery.webp" alt="Lightspeed exhaust detail" loading="lazy"></a>
+    <a class="gal-link rev d2" data-i="8"><img src="LangenLightspeed-015 1_warm 2_web-ready_gallery.webp" alt="Langen Lightspeed rear three-quarter" loading="lazy"></a>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lb-close">×</button>
+  <button class="lightbox-nav lightbox-prev" id="lb-prev">‹</button>
+  <button class="lightbox-nav lightbox-next" id="lb-next">›</button>
+  <img id="lb-img" src="" alt="">
+</div>
+
 <!-- PRESS — Two Stroke reviews, correctly labelled, all linked -->
 <div class="press-sec">
   <div class="sec-lbl rev">Critical acclaim</div>
@@ -457,11 +506,11 @@ footer{background:var(--bg);border-top:1px solid var(--b);padding:52px 84px;disp
     <h2 class="rsv-h rev">Secure your<br><em>Lightspeed</em></h2>
     <p class="rsv-b rev">Build slots are allocated in order of reservation. Contact the team now to discuss your specification, timeline and the Langen build journey.</p>
     <div class="rsv-acts rev">
-      <a href="/cdn-cgi/l/email-protection#86efe8e0e9c6eae7e8e1e3e8ebe9f2e9f4e5ffe5eae3f5a8e5e9a8f3edb9f5f3e4ece3e5f2bbcaefe1eef2f5f6e3e3e2a3b4b6d4e3f5e3f4f0e7f2efe9e8a3b4b6c3e8f7f3eff4ff" class="btn-p">Enquire now</a>
+      <a href="mailto:chris@langenmotorcycles.co.uk" class="btn-p">Enquire now</a>
       <a href="tel:+4401942724059" class="btn-g">+44 01942 724 059</a>
     </div>
     <div class="cbar rev">
-      <div class="cbar-item"><span class="cbar-lbl">Email</span><a href="/cdn-cgi/l/email-protection#3d54535b527d515c535a5853505249524f5e445e51584e135e52134856" class="cbar-val"><span class="__cf_email__" data-cfemail="81e8efe7eec1ede0efe6e4efeceef5eef3e2f8e2ede4f2afe2eeaff4ea">[email&#160;protected]</span></a></div>
+      <div class="cbar-item"><span class="cbar-lbl">Email</span><a href="mailto:chris@langenmotorcycles.co.uk" class="cbar-val">chris@langenmotorcycles.co.uk</a></div>
       <div class="cbar-item"><span class="cbar-lbl">Location</span><span class="cbar-val">Kingfisher Court, Wigan WN4 9DW</span></div>
       <div class="cbar-item"><span class="cbar-lbl">Availability</span><span class="cbar-val">Build slots limited — enquire now</span></div>
     </div>
@@ -484,11 +533,28 @@ footer{background:var(--bg);border-top:1px solid var(--b);padding:52px 84px;disp
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 const obs = new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}});
 },{threshold:0.1,rootMargin:'0px 0px -32px 0px'});
 document.querySelectorAll('.rev').forEach(el=>obs.observe(el));
 
 const nav = document.querySelector('nav');
-window.addEventListener('scro
+window.addEventListener('scroll',()=>{nav.style.background=window.scrollY>60?'rgba(8,8,7,.96)':'rgba(8,8,7,.82)'});
+
+// Lightbox
+const lb=document.getElementById('lightbox'),lbImg=document.getElementById('lb-img');
+const galLinks=[...document.querySelectorAll('.gal-link')];
+let currentIdx=0;
+function openLB(i){currentIdx=i;lbImg.src=galLinks[i].querySelector('img').src;lb.classList.add('open');document.body.style.overflow='hidden'}
+function closeLB(){lb.classList.remove('open');document.body.style.overflow=''}
+function navLB(dir){currentIdx=(currentIdx+dir+galLinks.length)%galLinks.length;lbImg.src=galLinks[currentIdx].querySelector('img').src}
+galLinks.forEach((a,i)=>a.addEventListener('click',()=>openLB(i)));
+document.getElementById('lb-close').addEventListener('click',closeLB);
+document.getElementById('lb-prev').addEventListener('click',()=>navLB(-1));
+document.getElementById('lb-next').addEventListener('click',()=>navLB(1));
+lb.addEventListener('click',e=>{if(e.target===lb)closeLB()});
+document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')closeLB();if(e.key==='ArrowLeft')navLB(-1);if(e.key==='ArrowRight')navLB(1)});
+</script>
+</body>
+</html>
