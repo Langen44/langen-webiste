@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Two Stroke — Langen Motorcycles</title>
+<meta name="description" content="76 horsepower. 112 kilograms. 100 motorcycles. The Langen Two Stroke is a hand-built two-stroke V-twin café racer — the world's only road-legal modern two-stroke sportbike.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --black:#080807;--bg:#0c0b0a;--bg2:#111010;--bg3:#191715;
+  --gold:#c9a962;--gold2:#e2c47a;
+  --gold-dim:rgba(201,169,98,.12);--gold-glow:rgba(201,169,98,.22);
+  --w:#f5f4f2;--w90:rgba(245,244,242,.9);--w75:rgba(245,244,242,.75);
+  --w55:rgba(245,244,242,.75);--w30:rgba(245,244,242,.55);--w20:rgba(245,244,242,.2);--w12:rgba(245,244,242,.12);--w08:rgba(245,244,242,.08);
+  --b:rgba(201,169,98,.15);--b2:rgba(201,169,98,.32);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--w);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.6}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 52px;height:72px;background:rgba(8,8,7,.82);backdrop-filter:blur(24px);border-bottom:1px solid var(--b);transition:background .4s}
+.nav-logo{display:flex;align-items:center;gap:20px}
+.nav-logo img.main{height:28px;opacity:.95}
+.nav-div{width:1px;height:22px;background:var(--b2);flex-shrink:0}
+.nav-logo img.model{height:16px;opacity:.8}
+.nav-links{display:flex;align-items:center;gap:36px}
+.nav-links a{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--w55);text-decoration:none;transition:color .2s;font-weight:400}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{background:transparent;border:1px solid var(--b2);color:var(--gold);padding:10px 26px;border-radius:2px;font-size:10px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:all .25s;font-family:'DM Sans',sans-serif;text-decoration:none;white-space:nowrap}
+.nav-cta:hover{background:var(--gold);color:var(--black);border-color:var(--gold)}
+
+/* HERO */
+.hero{position:relative;height:100vh;min-height:700px;display:flex;align-items:flex-end;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,8,7,.4) 0%,rgba(8,8,7,0) 38%,rgba(8,8,7,0) 52%,rgba(8,8,7,.93) 100%),linear-gradient(to right,rgba(8,8,7,.58) 0%,transparent 65%);z-index:1}
+.hero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 55%;filter:brightness(.75) contrast(1.1)}
+.hero-content{position:relative;z-index:2;padding:0 84px 92px;width:100%}
+.hero-wordmark{display:block;height:clamp(18px,2.4vw,26px);width:auto;margin-bottom:28px}
+.hero-eyebrow{font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);font-weight:400;margin-bottom:18px;display:flex;align-items:center;gap:16px}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold);opacity:.7}
+.hero-sub{font-size:18px;font-weight:300;color:var(--w90);letter-spacing:.1px;line-height:1.78;max-width:520px;margin-bottom:48px}
+.hero-actions{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.hero-scroll{position:absolute;bottom:44px;right:84px;z-index:2;display:flex;align-items:center;gap:12px;font-size:10px;letter-spacing:3.5px;text-transform:uppercase;color:var(--w55)}
+.scroll-line{width:36px;height:1px;background:var(--w20)}
+
+/* BUTTONS */
+.btn-p{background:var(--gold);color:var(--black);padding:17px 44px;border-radius:2px;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:500;text-decoration:none;transition:all .3s;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;display:inline-block}
+.btn-p:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 12px 40px rgba(201,169,98,.28)}
+.btn-g{background:transparent;color:var(--w90);padding:17px 36px;border-radius:2px;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;font-weight:400;text-decoration:none;border:1px solid var(--w20);transition:all .25s;font-family:'DM Sans',sans-serif;display:inline-block}
+.btn-g:hover{border-color:var(--w55);color:var(--w)}
+
+/* NUMBERS */
+.numbers{background:var(--bg2);border-top:1px solid var(--b);border-bottom:1px solid var(--b);display:grid;grid-template-columns:repeat(4,1fr)}
+.n-item{padding:56px 48px;border-right:1px solid var(--b);transition:background .3s;position:relative}
+.n-item:last-child{border-right:none}
+.n-item:hover{background:var(--bg3)}
+.n-val{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(52px,5.5vw,76px);font-weight:300;color:var(--gold);line-height:1;letter-spacing:-1px;margin-bottom:14px}
+.n-unit{font-size:18px;color:var(--w55);font-weight:300;vertical-align:super;margin-left:3px}
+.n-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--w75);font-weight:400;margin-bottom:6px}
+.n-sub{font-size:13px;color:var(--w55);line-height:1.5}
+
+/* SECTION SHARED */
+.sec-lbl{font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;font-weight:400;display:flex;align-items:center;gap:16px}
+.sec-lbl::before{content:'';width:24px;height:1px;background:var(--gold)}
+.sec-h{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(44px,4.5vw,66px);font-weight:300;line-height:1.05;letter-spacing:-1px;margin-bottom:28px;color:var(--w)}
+.sec-h em{font-style:italic;color:var(--gold)}
+.sec-b{font-size:17px;line-height:1.85;color:var(--w75);font-weight:300;max-width:560px}
+
+/* ENGINE */
+.engine-sec{display:grid;grid-template-columns:1fr 1fr;gap:84px;align-items:center;padding:120px 84px}
+.engine-vis{aspect-ratio:4/3;background:var(--bg3);border-radius:3px;overflow:hidden;border:1px solid var(--b)}
+.engine-vis img{width:100%;height:100%;object-fit:cover}
+.e-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--b);border:1px solid var(--b);margin-top:48px;border-radius:3px;overflow:hidden}
+.e-stat{background:var(--bg2);padding:26px;transition:background .25s}
+.e-stat:hover{background:var(--bg3)}
+.e-stat-val{font-family:'Cormorant Garamond',Georgia,serif;font-size:36px;color:var(--gold);font-weight:300;line-height:1;margin-bottom:10px}
+.e-stat-lbl{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--w55)}
+
+/* SPLIT */
+.split{display:grid;grid-template-columns:1fr 1fr;min-height:640px}
+.split-img{position:relative;overflow:hidden}
+.split-img img{width:100%;height:100%;object-fit:cover;transition:transform 8s cubic-bezier(.16,1,.3,1)}
+.split-img:hover img{transform:scale(1.04)}
+.split-txt{padding:88px 84px;background:var(--bg2);display:flex;flex-direction:column;justify-content:center;border-left:1px solid var(--b)}
+.susp-item{display:flex;gap:20px;align-items:flex-start;padding:22px 0;border-bottom:1px solid var(--b)}
+.susp-item:last-child{border-bottom:none}
+.susp-line{width:1px;min-height:40px;background:linear-gradient(to bottom,var(--gold),transparent);flex-shrink:0;margin-top:4px;opacity:.5}
+.susp-key{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--w75);margin-bottom:7px;font-weight:400}
+.susp-val{font-size:15px;color:var(--w55);line-height:1.65;font-weight:300}
+
+/* HERITAGE */
+.heritage-sec{padding:120px 84px;background:var(--bg2);border-top:1px solid var(--b);border-bottom:1px solid var(--b)}
+.heritage-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--b);border:1px solid var(--b);border-radius:3px;overflow:hidden;margin-top:64px}
+.heritage-item{background:var(--bg);padding:48px 40px;position:relative;transition:background .3s}
+.heritage-item::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity .4s}
+.heritage-item:hover{background:var(--bg3)}
+.heritage-item:hover::before{opacity:1}
+.heritage-n{font-family:'Cormorant Garamond',Georgia,serif;font-size:52px;font-weight:300;color:var(--w08);line-height:1;margin-bottom:18px}
+.heritage-t{font-size:13px;letter-spacing:2.5px;text-transform:uppercase;color:var(--w90);font-weight:500;margin-bottom:14px}
+.heritage-d{font-size:15px;color:var(--w55);line-height:1.75;font-weight:300}
+
+/* SPECS */
+.specs-sec{padding:120px 84px}
+.specs-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;margin-top:64px}
+.specs-grp{margin-bottom:48px}
+.specs-grp-t{font-size:10px;letter-spacing:4.5px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--b)}
+.spec-row{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0;border-bottom:1px solid rgba(245,244,242,.06);gap:20px}
+.spec-row:last-child{border-bottom:none}
+.spec-k{font-size:13px;color:var(--w55);font-weight:300;flex-shrink:0}
+.spec-v{font-size:14px;color:var(--w90);font-weight:400;text-align:right}
+
+/* PRESS */
+.press-sec{padding:120px 84px}
+.press-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--b);border:1px solid var(--b);border-radius:3px;overflow:hidden;margin-top:40px}
+.press-card{background:var(--bg2);padding:52px 44px;transition:background .3s;text-decoration:none;display:flex;flex-direction:column}
+.press-card:hover{background:var(--bg3)}
+.press-q{font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-weight:300;font-style:italic;color:var(--w90);line-height:1.55;margin-bottom:32px;flex:1}
+.press-q::before{content:'\201C';font-size:72px;color:var(--gold);opacity:.22;display:block;line-height:.72;margin-bottom:10px}
+.press-src{font-size:10px;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);font-weight:400}
+.press-tag{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--w20);border:1px solid var(--w08);padding:4px 10px;border-radius:2px;display:inline-block;margin-top:8px}
+.press-arr{color:var(--gold);opacity:.35;font-size:16px;margin-left:auto;margin-top:16px;align-self:flex-end;transition:opacity .2s,transform .2s}
+.press-card:hover .press-arr{opacity:.85;transform:translate(3px,-2px)}
+
+/* DELIVERY */
+.del-sec{background:var(--bg2);border-top:1px solid var(--b);padding:88px 84px;display:grid;grid-template-columns:repeat(3,1fr)}
+.del-item{padding:48px 44px;border-right:1px solid var(--b)}
+.del-item:last-child{border-right:none}
+.del-icon{width:52px;height:52px;border-radius:3px;border:1px solid var(--b2);display:flex;align-items:center;justify-content:center;margin-bottom:28px;background:var(--gold-dim)}
+.del-icon svg{width:24px;height:24px;stroke:var(--gold);fill:none;stroke-width:1.5}
+.del-t{font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:500;margin-bottom:14px;color:var(--w90)}
+.del-d{font-size:15px;color:var(--w55);line-height:1.8;font-weight:300}
+
+/* RESERVE */
+.rsv-sec{position:relative;padding:160px 84px;overflow:hidden;text-align:center;background:var(--black)}
+.rsv-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 100%,rgba(201,169,98,.09),transparent),radial-gradient(ellipse 50% 40% at 50% 50%,rgba(201,169,98,.03),transparent)}
+.rsv-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
+.rsv-lbl{font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:28px;font-weight:400}
+.rsv-h{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(42px,5.5vw,68px);font-weight:300;line-height:1.08;margin-bottom:28px;letter-spacing:-1px;color:var(--w)}
+.rsv-h em{font-style:italic;color:var(--gold)}
+.rsv-b{font-size:18px;color:var(--w75);line-height:1.85;margin-bottom:52px;font-weight:300}
+.rsv-acts{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap}
+.cbar{margin-top:72px;padding-top:40px;border-top:1px solid var(--b);display:flex;align-items:center;justify-content:center;gap:56px;flex-wrap:wrap}
+.cbar-item{display:flex;flex-direction:column;gap:6px;text-align:center}
+.cbar-lbl{font-size:10px;letter-spacing:3.5px;text-transform:uppercase;color:var(--w55)}
+.cbar-val{font-size:15px;color:var(--w75);text-decoration:none;transition:color .2s}
+.cbar-val:hover{color:var(--gold)}
+
+/* FOOTER */
+footer{background:var(--bg);border-top:1px solid var(--b);padding:52px 84px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px}
+.foot-logo{height:26px;opacity:.85}
+.foot-copy{font-size:11px;color:var(--w55);letter-spacing:.5px}
+.foot-links{display:flex;gap:32px;flex-wrap:wrap}
+.foot-links a{font-size:11px;color:var(--w55);text-decoration:none;letter-spacing:1.5px;text-transform:uppercase;transition:color .2s}
+.foot-links a:hover{color:var(--gold)}
+
+/* REVEAL */
+.rev{opacity:0;transform:translateY(28px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1)}
+.rev.in{opacity:1;transform:none}
+.d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  nav,.hero-content,.engine-sec,.heritage-sec,.specs-sec,.press-sec,.del-sec,.rsv-sec,footer{padding-left:32px;padding-right:32px}
+  .split-txt{padding:56px 32px}
+  .nav-links{display:none}
+}
+@media(max-width:860px){
+  .numbers{grid-template-columns:repeat(2,1fr)}
+  .n-item{padding:40px 24px;border-bottom:1px solid var(--b)}
+  .engine-sec{grid-template-columns:1fr;gap:40px;padding-top:80px;padding-bottom:80px}
+  .heritage-grid,.press-grid{grid-template-columns:1fr}
+  .split{grid-template-columns:1fr}
+  .split-img{height:360px}
+  .specs-grid{grid-template-columns:1fr;gap:0}
+  .del-sec{grid-template-columns:1fr}
+  .del-item{border-right:none;border-bottom:1px solid var(--b);padding:36px 24px}
+  .del-item:last-child{border-bottom:none}
+  .hero-scroll{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <a href="index.html"><img class="main" src="Langen-Motorcycles-Logo-White.png" alt="Langen Motorcycles"></a>
+    <div class="nav-div"></div>
+    <img class="model" src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/6295d857ec981c8b7800cf17_Two%20Stroke%20Logo.svg" alt="Two Stroke">
+  </div>
+  <div class="nav-links">
+    <a href="#performance">Performance</a>
+    <a href="#chassis">Chassis</a>
+    <a href="#heritage">Heritage</a>
+    <a href="#specification">Specification</a>
+    <a href="#reserve">Pre-owned</a>
+  </div>
+  <a href="cpo.html" class="nav-cta">Pre-owned</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <img class="bg" src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/68835e4676d1b91945b01862_DSC_7073.jpg" alt="Langen Two Stroke">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <img class="hero-wordmark rev" src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/6295d857ec981c8b7800cf17_Two%20Stroke%20Logo.svg" alt="Two Stroke">
+    <div class="hero-eyebrow rev d1">100 motorcycles &nbsp;&middot;&nbsp; Hand-built in Wigan, England</div>
+    <p class="hero-sub rev d2">The world's only road-legal modern two-stroke sportbike. A 249.5cc V-twin screamer wrapped in hand-laid carbon fibre, weighing less than most 125s. 660 bhp per tonne of pure, undiluted riding pleasure.</p>
+    <div class="hero-actions rev d3">
+      <a href="cpo.html" class="btn-p">Certified pre-owned</a>
+      <a href="#specification" class="btn-g">Full specification</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div>Scroll to explore</div>
+</div>
+
+<!-- NUMBERS -->
+<div class="numbers" id="performance">
+  <div class="n-item rev"><div class="n-val">76<span class="n-unit">hp</span></div><div class="n-label">Peak power</div><div class="n-sub">249.5cc V-twin two-stroke</div></div>
+  <div class="n-item rev d1"><div class="n-val">45<span class="n-unit">Nm</span></div><div class="n-label">Peak torque</div><div class="n-sub">90° V configuration</div></div>
+  <div class="n-item rev d2"><div class="n-val">112<span class="n-unit">kg</span></div><div class="n-label">Dry weight</div><div class="n-sub">Carbon fibre construction</div></div>
+  <div class="n-item rev d3"><div class="n-val">100</div><div class="n-label">Total production</div><div class="n-sub">Each built to individual order</div></div>
+</div>
+
+<!-- ENGINE -->
+<div class="engine-sec">
+  <div class="engine-vis rev">
+    <img src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/621777f6cf2b0440cfe76c4a_centre%20spread%20copy.jpg" alt="Langen Two Stroke">
+  </div>
+  <div>
+    <div class="sec-lbl rev">The powerplant</div>
+    <h2 class="sec-h rev">A Maranello-born<br><em>two-stroke V-twin</em></h2>
+    <p class="sec-b rev">Developed by Vincenzo Mattia at Vins Motors in Maranello, the 249.5cc 90° V-twin is fed by Langen's own electronic fuel injection with two port injectors, computer-controlled oil injection, electronically manipulated exhaust valves, and carbon fibre reeds. Hundreds of hours on the dyno have produced a powerband that defies everything you know about two-strokes — smooth, exploitable mid-range with a manic top-end that delivers 76 horsepower at 11,700 rpm.</p>
+    <div class="e-stats rev d1">
+      <div class="e-stat"><div class="e-stat-val">660</div><div class="e-stat-lbl">BHP per tonne</div></div>
+      <div class="e-stat"><div class="e-stat-val">11,700</div><div class="e-stat-lbl">RPM peak power</div></div>
+      <div class="e-stat"><div class="e-stat-val">249.5</div><div class="e-stat-lbl">CC displacement</div></div>
+      <div class="e-stat"><div class="e-stat-val">EFI</div><div class="e-stat-lbl">Electronic fuel injection</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CHASSIS SPLIT -->
+<div class="split" id="chassis">
+  <div class="split-img">
+    <img src="https://cdn.prod.website-files.com/61b06c247e4a65fd0affbf05/621893859b16ef220b72bd1a_shox-detail.jpg" alt="Langen Two Stroke Ktech suspension detail">
+  </div>
+  <div class="split-txt">
+    <div class="sec-lbl rev">Chassis &amp; suspension</div>
+    <h2 class="sec-h rev">Lightweight<br><em>precision</em></h2>
+    <p class="sec-b rev" style="margin-bottom:36px">Built around a custom-specified 7020T6 aluminium space frame — laser cut, 3D bent and immaculately welded — with bonded connection points inspired by aerospace construction.</p>
+    <div>
+      <div class="susp-item rev d1">
+        <div class="susp-line"></div>
+        <div><div class="susp-key">Front suspension</div><div class="susp-val">Öhlins 43mm right-way-up forks. Compression, rebound damping and spring preload adjustment.</div></div>
+      </div>
+      <div class="susp-item rev d2">
+        <div class="susp-line"></div>
+        <div><div class="susp-key">Rear suspension</div><div class="susp-val">Twin bespoke Ktech Piggyback Razors. Fully adjustable compression and rebound damping.</div></div>
+      </div>
+      <div class="susp-item rev d3">
+        <div class="susp-line"></div>
+        <div><div class="susp-key">Braking</div><div class="susp-val">320mm dual discs with 4-piston radial calipers. Race-proven stopping power at just 112 kg.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HERITAGE -->
+<div class="heritage-sec" id="heritage">
+  <div class="sec-lbl rev">Craftsmanship</div>
+  <h2 class="sec-h rev">Every detail<br><em>considered</em></h2>
+  <div class="heritage-grid">
+    <div class="heritage-item rev">
+      <div class="heritage-n">01</div>
+      <div class="heritage-t">Carbon fibre bodywork</div>
+      <div class="heritage-d">Hand-laid carbon fibre fuel tank and bodywork using a special resin, created in the Vins Motors autoclave in Maranello. The 3.7-gallon tank includes a separate 0.26-gallon oil reservoir — both lined using specialist composite techniques developed for high-performance motorsport.</div>
+    </div>
+    <div class="heritage-item rev d1">
+      <div class="heritage-n">02</div>
+      <div class="heritage-t">CNC-machined components</div>
+      <div class="heritage-d">Precision-machined aluminium and titanium throughout — from triple clamps to footrest hangers. Every fastener, bracket and mount is engineered to save weight without compromise. British craftsmanship at every level of detail.</div>
+    </div>
+    <div class="heritage-item rev d2">
+      <div class="heritage-n">03</div>
+      <div class="heritage-t">Bespoke to the rider</div>
+      <div class="heritage-d">Every Two Stroke is built to measure. Handlebar type and positioning, seat height, footrest location, rear suspension tuning, paint, chassis finish — each tailored to the individual owner's dimensions and preferences.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SPECS -->
+<div class="specs-sec" id="specification">
+  <div class="sec-lbl rev">Technical data</div>
+  <h2 class="sec-h rev">Full<br><em>specification</em></h2>
+  <div class="specs-grid">
+    <div class="rev">
+      <div class="specs-grp">
+        <div class="specs-grp-t">Engine</div>
+        <div class="spec-row"><span class="spec-k">Type</span><span class="spec-v">249.5cc 90° V-twin two-stroke</span></div>
+        <div class="spec-row"><span class="spec-k">Manufacturer</span><span class="spec-v">Vins Motors, Maranello</span></div>
+        <div class="spec-row"><span class="spec-k">Peak power</span><span class="spec-v">76 hp @ 11,700 rpm</span></div>
+        <div class="spec-row"><span class="spec-k">Peak torque</span><span class="spec-v">45 Nm @ 12,700 rpm</span></div>
+        <div class="spec-row"><span class="spec-k">Fuel system</span><span class="spec-v">Langen EFI, 2 port injectors</span></div>
+        <div class="spec-row"><span class="spec-k">Throttle body</span><span class="spec-v">Electronic 74mm</span></div>
+        <div class="spec-row"><span class="spec-k">Oil system</span><span class="spec-v">Computer-controlled injection</span></div>
+        <div class="spec-row"><span class="spec-k">Exhaust valves</span><span class="spec-v">Electronically controlled</span></div>
+      </div>
+      <div class="specs-grp">
+        <div class="specs-grp-t">Chassis</div>
+        <div class="spec-row"><span class="spec-k">Frame</span><span class="spec-v">7020T6 aluminium space frame</span></div>
+        <div class="spec-row"><span class="spec-k">Bodywork</span><span class="spec-v">Hand-laid carbon fibre</span></div>
+        <div class="spec-row"><span class="spec-k">Dry weight</span><span class="spec-v">112 kg</span></div>
+        <div class="spec-row"><span class="spec-k">Seat height</span><span class="spec-v">820 mm (bespoke to owner)</span></div>
+        <div class="spec-row"><span class="spec-k">Wheelbase</span><span class="spec-v">1,450 mm</span></div>
+      </div>
+    </div>
+    <div class="rev d1">
+      <div class="specs-grp">
+        <div class="specs-grp-t">Suspension</div>
+        <div class="spec-row"><span class="spec-k">Front</span><span class="spec-v">Öhlins 43mm forks, fully adjustable</span></div>
+        <div class="spec-row"><span class="spec-k">Rear</span><span class="spec-v">Twin Ktech Piggyback Razors</span></div>
+        <div class="spec-row"><span class="spec-k">Travel</span><span class="spec-v">120 mm front &amp; rear</span></div>
+      </div>
+      <div class="specs-grp">
+        <div class="specs-grp-t">Wheels &amp; brakes</div>
+        <div class="spec-row"><span class="spec-k">Wheels</span><span class="spec-v">17" wire-spoke, anodised rims</span></div>
+        <div class="spec-row"><span class="spec-k">Tyres</span><span class="spec-v">Dunlop Classic TT100 GP Radial</span></div>
+        <div class="spec-row"><span class="spec-k">Front brakes</span><span class="spec-v">320mm dual disc, 4-piston radial</span></div>
+        <div class="spec-row"><span class="spec-k">Rear brake</span><span class="spec-v">Single disc</span></div>
+        <div class="spec-row"><span class="spec-k">Wheel options</span><span class="spec-v">Dymag forged Mg · BST carbon</span></div>
+      </div>
+      <div class="specs-grp">
+        <div class="specs-grp-t">Production &amp; pricing</div>
+        <div class="spec-row"><span class="spec-k">Production run</span><span class="spec-v">100 units</span></div>
+        <div class="spec-row"><span class="spec-k">Price</span><span class="spec-v">£29,400 + VAT</span></div>
+        <div class="spec-row"><span class="spec-k">Build location</span><span class="spec-v">Wigan, England</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRESS -->
+<div class="press-sec">
+  <div class="sec-lbl rev">Critical acclaim</div>
+  <h2 class="sec-h rev">What the press<br><em>said</em></h2>
+  <div class="press-grid">
+    <a href="https://www.motorcycle.com/bikes/manufacturer/2023-langen-two-stroke-250-road-test-44595496" target="_blank" rel="noopener" class="press-card rev">
+      <div class="press-q">Excellent power to weight ratio, and the benchmark handling of its sweet-steering chassis. Langen's debut model has hit the bullseye.</div>
+      <div><div class="press-src">Motorcycle.com</div></div>
+      <div class="press-arr">↗</div>
+    </a>
+    <a href="https://www.motorcyclenews.com/bike-reviews/langen/two-stroke/2022/" target="_blank" rel="noopener" class="press-card rev d1">
+      <div class="press-q">Build quality is spectacular. The whole package is a triumph of handling prowess.</div>
+      <div><div class="press-src">Motorcycle News</div></div>
+      <div class="press-arr">↗</div>
+    </a>
+    <a href="https://www.youtube.com/watch?v=YiX2WigPpPc" target="_blank" rel="noopener" class="press-card rev d2">
+      <div class="press-q">In the flesh it is just stunning. The way it rides is incredible.</div>
+      <div><div class="press-src">The Late Brake Show</div></div>
+      <div class="press-arr">↗</div>
+    </a>
+  </div>
+</div>
+
+<!-- OWNERSHIP -->
+<div class="del-sec">
+  <div class="del-item rev">
+    <div class="del-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+    <div class="del-t">Certified pre-owned</div>
+    <div class="del-d">With all 100 builds allocated, certified pre-owned is the route to Two Stroke ownership. Each CPO motorcycle is inspected and verified by the Langen team before being offered for sale.</div>
+  </div>
+  <div class="del-item rev d1">
+    <div class="del-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+    <div class="del-t">Built to measure</div>
+    <div class="del-d">Every Two Stroke was built around the rider who ordered it — bespoke ergonomics, controls, paint, chassis finish and suspension tuning. Each is a genuine one-of-one.</div>
+  </div>
+  <div class="del-item rev d2">
+    <div class="del-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+    <div class="del-t">Langen aftercare</div>
+    <div class="del-d">Every Two Stroke is backed by the full Langen aftercare programme — direct access to the people who built your motorcycle, for as long as you own it.</div>
+  </div>
+</div>
+
+<!-- ORDER BOOK CLOSED -->
+<div id="reserve" class="rsv-sec">
+  <div class="rsv-bg"></div>
+  <div class="rsv-inner">
+    <div class="rsv-lbl rev">All 100 builds allocated</div>
+    <h2 class="rsv-h rev">The order book<br><em>is closed</em></h2>
+    <p class="rsv-b rev">Every Two Stroke build slot has been allocated. If you'd like to own one, certified pre-owned examples do become available from time to time — each inspected, verified and backed by Langen.</p>
+    <div class="rsv-acts rev">
+      <a href="cpo.html" class="btn-p">View certified pre-owned</a>
+      <a href="lightspeed.html" class="btn-g">Discover the Lightspeed</a>
+    </div>
+    <div class="cbar rev">
+      <div class="cbar-item"><span class="cbar-lbl">Email</span><a href="mailto:chris@langenmotorcycles.co.uk" class="cbar-val">chris@langenmotorcycles.co.uk</a></div>
+      <div class="cbar-item"><span class="cbar-lbl">Location</span><span class="cbar-val">Kingfisher Court, Wigan WN4 9DW</span></div>
+      <div class="cbar-item"><span class="cbar-lbl">Telephone</span><a href="tel:+4401942724059" class="cbar-val">+44 01942 724 059</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap">
+    <a href="index.html"><img class="foot-logo" src="Langen-Motorcycles-Logo-White.png" alt="Langen Motorcycles"></a>
+    <span class="foot-copy">© 2025 Langen Technology Ltd &nbsp;·&nbsp; Registered in England &amp; Wales 11601010</span>
+  </div>
+  <div class="foot-links">
+    <a href="index.html">Home</a>
+    <a href="lightspeed.html">Lightspeed</a>
+    <a href="#">About</a>
+    <a href="#">News</a>
+    <a href="#">Contact</a>
+    <a href="#">Privacy</a>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}});
+},{threshold:0.1,rootMargin:'0px 0px -32px 0px'});
+document.querySelectorAll('.rev').forEach(el=>obs.observe(el));
+
+const nav = document.querySelector('nav');
+window.addEventListener('scroll',()=>{nav.style.background=window.scrollY>60?'rgba(8,8,7,.96)':'rgba(8,8,7,.82)'});
+</script>
+</body>
+</html>
